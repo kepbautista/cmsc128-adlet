@@ -19,18 +19,19 @@ class AddStudentController
 				"&mi=".$mi."&lang=".$lang."&rdg=".$rdg."&math=".$math."&sci=".$sci.
 				"&upg=".$upg."&gender=".$gender."&region=".$region;
 	
-		/*transform each information to uppercase letters*/
-		$stdno = strtoupper($stdno);
-		$lname = strtoupper($lname);
-		$fname = strtoupper($fname);
-		$mi = strtoupper($mi);
-		$lang = strtoupper($lang);
-		$rdg = strtoupper($rdg);
-		$math = strtoupper($math);
-		$sci = strtoupper($sci);
-		$upg = strtoupper($upg);
-		$gender = strtoupper($gender);
-		$region = strtoupper($region);
+		/*transform each information to uppercase letters
+		& remove white spaces before and after*/
+		$stdno = trim(strtoupper($stdno));
+		$lname = trim(strtoupper($lname));
+		$fname = trim(strtoupper($fname));
+		$mi = trim(strtoupper($mi));
+		$lang = trim(strtoupper($lang));
+		$rdg = trim(strtoupper($rdg));
+		$math = trim(strtoupper($math));
+		$sci = trim(strtoupper($sci));
+		$upg = trim(strtoupper($upg));
+		$gender = trim(strtoupper($gender));
+		$region = trim(strtoupper($region));
 		
 		$student = new AddStudentView(); //instance of AddStudentView
 		$sm = new StudentManager(); //instance of StudentManager

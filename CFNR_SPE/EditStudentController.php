@@ -6,20 +6,21 @@ class EditStudentController
 	function EditStudentController(){
 	}
 	
-	function editStudent($stdno,$lname,$fname,$mi,$rdg,$lang,$math,$sci,$upg,$gender,$region)
+	function editStudent($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
 	{
-		/*transform each information to uppercase letters*/
-		$stdno = strtoupper($stdno);
-		$lname = strtoupper($lname);
-		$fname = strtoupper($fname);
-		$mi = strtoupper($mi);
-		$rdg = strtoupper($rdg);
-		$lang = strtoupper($lang);
-		$math = strtoupper($math);
-		$sci = strtoupper($sci);
-		$upg = strtoupper($upg);
-		$gender = strtoupper($gender);
-		$region = strtoupper($region);
+		/*transform each information to uppercase letters
+		& remove white spaces before and after*/
+		$stdno = trim(strtoupper($stdno));
+		$lname = trim(strtoupper($lname));
+		$fname = trim(strtoupper($fname));
+		$mi = trim(strtoupper($mi));
+		$rdg = trim(strtoupper($rdg));
+		$lang = trim(strtoupper($lang));
+		$math = trim(strtoupper($math));
+		$sci = trim(strtoupper($sci));
+		$upg = trim(strtoupper($upg));
+		$gender = trim(strtoupper($gender));
+		$region = trim(strtoupper($region));
 		
 		$editstudentview = new EditStudentView(); //instance of EditStudentView
 		$studentmanager = new StudentManager(); //instance of StudentManager
