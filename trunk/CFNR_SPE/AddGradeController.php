@@ -1,3 +1,9 @@
+<!--
+  - File Name: AddGradeController.php
+  - Version Information: Version 1.0
+  - Date: March 2, 2011 (4th Release)
+  - Program Description: data transformations
+  -->
 <?php
 include "GradeManager.php";
 

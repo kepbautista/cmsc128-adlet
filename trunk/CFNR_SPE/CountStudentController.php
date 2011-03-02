@@ -1,7 +1,7 @@
 <!--
   - File Name: ControllerStudentView.php
   - Version Information: Version 1.0
-  - Date:
+  - Date: February 28, 2011 (3rd Release)
   - Program Description: show message for counting students
   -->
 <?php

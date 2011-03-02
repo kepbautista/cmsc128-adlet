@@ -1,7 +1,7 @@
 <!--
   - File Name: StudentManager.php
-  - Version Information: Version 1.1
-  - Date: February 4, 2011 (First Release)
+  - Version Information: Version 1.2
+  - Date: March 2, 2011 (4th Release)
   - Program Description: Manipulate Database Queries
   -->
 <?php
@@ -18,6 +18,7 @@ class StudentManager
 		$connect = new dbconnection();
 		$con = $connect->connectdb();
 
+		/*create table for student's grades*/
 		$sql = "CREATE TABLE `".$stdno."`
 		(
 		`CourseNumber` varchar(20) NOT NULL,
@@ -29,6 +30,7 @@ class StudentManager
 		)";
 		mysql_query($sql,$con);
 		
+		/*create table for student's GWA (per semester)*/
 		$table = $stdno."/gwa";
 		$sql = "CREATE TABLE `".$table."`
 		(
@@ -161,6 +163,7 @@ class StudentManager
 		$connect = new dbconnection();
 		$con = $connect->connectdb();	
 		
+		/*determine which category to count*/
 		if($category=='Gender') 
 			$count = array("F","M");
 		else if($category=='Region') {

@@ -1,3 +1,9 @@
+<!--
+  - File Name: StudentManager.php
+  - Version Information: Version 1.0
+  - Date: March 2, 2011 (4th Release)
+  - Program Description: Manipulate Database Queries for Grades
+  -->
 <?php
 include "dbconnection.php";
 
@@ -5,17 +11,17 @@ class GradeManager {
 	function ComputeGWA($stdno,$con,$sem,$year) {
 		$check = array("S","U","DRP","PASS","FAIL");
 		
-		echo $year." ";
-		
 		if($sem=="running")
-			$sql = "SELECT * FROM `".$stdno."`";
+			$sql = "SELECT * FROM `".$stdno."`"; //query for computing running GWA
 		else
-			$sql = "SELECT * FROM `".$stdno."` WHERE Semester LIKE '$sem' and SchoolYear LIKE '$year'";
+			$sql = "SELECT * FROM `".$stdno."` WHERE Semester LIKE 
+				   '$sem' and SchoolYear LIKE '$year'"; //query for computing a semester's GWA
 			
 		$query = mysql_query($sql,$con);
-		$numerator = 0;
-		$units = 0;
+		$numerator = 0; //initialize numerator
+		$units = 0; //initialize number of units
 		
+		/*Get the summation of (grades*units) & summation of units*/
 		while($row = mysql_fetch_array($query)){
 			if((!in_array($row['Grade'],$check)) && (substr($row['CourseNumber'],0,3)!="PE ")) {
 				$numerator = $numerator + ($row['Grade'] * $row['Units']);
@@ -52,11 +58,11 @@ class GradeManager {
 		$check = mysql_query($sql,$con);
 		
 		if((mysql_num_rows($check)==0))
-			mysql_query("INSERT INTO `".$student."` VALUES ('$sem','$sy','$gwa')");
+			mysql_query("INSERT INTO `".$student."` VALUES ('$sem','$sy','$gwa')"); //semester is not yet in the table
 		else{
 			$sql = "UPDATE `".$student."` SET GWA='$gwa' WHERE Semester like '$sem' AND SchoolYear LIKE '$sy'";
 			mysql_query($sql,$con);
-		}
+		} //semester is already in the table
 			
 		
 		/*Compute Running GWA*/
@@ -65,7 +71,7 @@ class GradeManager {
 		
 		$connect->closeconnection($con);
 		
-		if(!in_array(0,$result)) return 1;
+		if(!in_array(0,$result)) return 1; //one or more query is not succesful
 		else return 0;
 	}
 }
