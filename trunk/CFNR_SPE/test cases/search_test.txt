@@ -1,0 +1,6 @@
+Test Cases:
+1. Correct -> Correct Student Number Format, No null inputs, No Non-numeric Grades, No Negative Grades
+2. Null Values -> no input, incomplete full name (one field empty)
+3. Wrong student number format -> 201232asd
+4. Non-Numeric Grades -> Language: a, Reading: a, Mathematics: a, Science: a, UPG: a
+5. Negative Grades -> Language: -99, Reading: -11, Mathematics: -12, Science: -100, UPG: -2.01

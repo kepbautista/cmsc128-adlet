@@ -1,0 +1,54 @@
+h1{
+text-align: center
+}
+
+h2{
+text-align: center;
+background-color: #ffd700;
+}
+
+p{
+text-align: center
+}
+			
+th{
+text-align: center;
+background-color: #dc403c;
+}
+
+#result{
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+#count_results{
+border: solid black;
+border-collapse: collapse;
+margin: auto;
+}
+
+#student{
+padding: 5px;
+border: 1px solid;
+}
+
+ul {
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+
+li {
+	display: inline;/*makes the list horizontal*/
+	border: solid;
+	border-width: 1px 1px 0 1px;
+	margin: 0 0.5em 0 0;
+}
+
+li a {
+	padding: 0 1em;
+}/*anchor elements inside a list*/
+
+#content {
+	border: 1px solid;
+}/*div where the tabs sit*/
