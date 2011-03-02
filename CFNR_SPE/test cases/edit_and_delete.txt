@@ -1,0 +1,10 @@
+Edit Test Cases:
+1. Correct	-> (2010-12345, Arelas, Pristine Pearl, H, 67, 70, 81, 94, 2.567, F, 4-A) 
+2. Null Values -> (,,,,,,,,,,)
+3. Duplicate Student Number -> (2010-12345, Paralade, Elaine Ann, C, 39, 75, 39, 71, 2.613, F, 5)
+4. Wrong student number format -> (201232asd, Dela Cruz, Juan, A, 12, 25, 10, 4, 3, M, NCR)
+5. Non-Numeric Grades -> (2010-54321, Sayao, Maria Lorena, C, a, a, a, a, a, F, 4-A)
+6. Negative Grades -> (2010-98765, Aguirre, Donna Mae, S, -99, -11, -12, -100, -2.01, F, 4-A)
+
+Delete Test Cases:
+Test Cases are not needed for delete;
