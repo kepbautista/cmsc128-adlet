@@ -1,7 +1,7 @@
 <!--
   - File Name: count.php
   - Version Information: Version 1.0
-  - Date:
+  - Date: February 28, 2011 (3rd Release)
   - Program Description: form for counting students per category
   -->
 <?php

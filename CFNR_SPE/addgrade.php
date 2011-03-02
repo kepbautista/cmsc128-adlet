@@ -1,3 +1,9 @@
+<!--
+  - File Name: addgrade.php
+  - Version Information: Version 1.0
+  - Date: March 2, 2011 (4th Release)
+  - Program Description: form for adding grades
+  -->
 <?php
 include "dbconnection.php";
 	session_start();
@@ -83,6 +89,7 @@ include "dbconnection.php";
 	</form>
 	
 	<?php
+			/*prompts*/
 			if(isset($_GET['addgradesuccess']))
 				echo "<h3>Grades Successfully Added!</h3>";
 			else{

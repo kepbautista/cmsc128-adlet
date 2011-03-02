@@ -1,3 +1,9 @@
+<!--
+  - File Name: AddGradeView.php
+  - Version Information: Version 1.1
+  - Date: March 2, 2011 (4th Release)
+  - Program Description: Validate Input Grades
+  -->
 <?php
 session_start();
 include "AddGradeController.php";
