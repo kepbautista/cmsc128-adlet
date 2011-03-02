@@ -9,7 +9,7 @@ session_start();
 include "EditStudentController.php";
 class EditStudentView
 {
-	function validateInfo($stdno,$lname,$fname,$mi,$rdg,$lang,
+	function validateInfo($stdno,$lname,$fname,$mi,$lang,$rdg,
         $math,$sci,$upg,$gender,$region) {
 		
 		$error = 0;
@@ -94,19 +94,19 @@ class EditStudentView
 		if($error==1) header($link);//there are errors present
 		else{
 			$asc = new EditStudentController();
-			$asc->editStudent($stdno,$lname,$fname,$mi,$rdg,$lang,$math,$sci,$upg,
+			$asc->editStudent($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
 				  $gender,$region);
 		}//there are no errors
 	}
 	
 	function requestEditStudent(){
 		/*get submitted information*/
-		$stdno = $_SESSION['editStdno'];
+		$stdno = $_SESSION['modifyStdno'];
 		$lname = $_POST['lname'];
 		$fname = $_POST['fname'];
 		$mi = $_POST['mi'];
-		$rdg = $_POST['rdg'];
 		$lang = $_POST['lang'];
+		$rdg = $_POST['rdg'];
 		$math = $_POST['math'];
 		$sci = $_POST['sci'];
 		$upg = $_POST['upg'];
@@ -114,7 +114,7 @@ class EditStudentView
 		$region = $_POST['region'];
 		
 		$editstudentview2 = new EditStudentView();
-		$editstudentview2->validateInfo($stdno,$lname,$fname,$mi,$rdg,$lang,$math,$sci,$upg,
+		$editstudentview2->validateInfo($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
 			   $gender,$region);
 	}
 	

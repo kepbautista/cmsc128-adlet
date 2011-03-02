@@ -9,24 +9,27 @@ include "GradeManager.php";
 
 class AddGradeController {
 	function addGrade($table,$sem,$sy,$cnum,$ctitle,$grades,$units) {
-		/*convert course numbers to uppercase letters*/
+		/*convert course numbers to uppercase letters
+		 & remove white spaces before and after*/
 		$i = 0;
 		foreach($cnum as $value){
-			$cnum[$i] = strtoupper($value);
+			$cnum[$i] = trim(strtoupper($value));
 			$i++;
 		}
 	
-		/*convert course titles to uppercase letters*/
+		/*convert course titles to uppercase letters
+		& remove white spaces before and after*/
 		$i = 0;	
 		foreach($ctitle as $value){
-			$ctitle[$i] = strtoupper($value);
+			$ctitle[$i] = trim(strtoupper($value));
 			$i++;
 		}
 		
-		/*convert grades to uppercase letters*/
+		/*convert grades to uppercase letters
+		& remove white spaces before and after*/
 		$i = 0;
 		foreach($grades as $value){
-			$grades[$i] = strtoupper($value);
+			$grades[$i] = trim(strtoupper($value));
 			$i++;
 		}
 		
