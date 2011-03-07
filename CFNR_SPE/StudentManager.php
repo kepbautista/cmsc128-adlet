@@ -13,37 +13,62 @@ class StudentManager
 	function StudentManager(){
 	}
 	
-	function insertStudent($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
+	function determineTable($stdno){
+		$connect = new dbconnection();
+		$con = $connect->connectdb();
+		
+		$result = mysql_query("SELECT TableName FROM students_list where StudentNumber='$stdno'");
+		$table = mysql_fetch_array($result);
+		
+		$connect->closeconnection($con);
+		
+		return $table['TableName'];
+	}
+	
+	function insertStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
 	{
 		$connect = new dbconnection();
 		$con = $connect->connectdb();
-
-		/*create table for student's grades*/
-		$sql = "CREATE TABLE `".$stdno."`
-		(
-		`CourseNumber` varchar(20) NOT NULL,
-		`CourseTitle` varchar(100) NOT NULL,
-		`Grade` varchar(4) NOT NULL,
-		`Units` float NOT NULL,
-		`Semester` varchar(30) NOT NULL,
-		`SchoolYear` varchar(20) NOT NULL
-		)";
-		mysql_query($sql,$con);
 		
-		/*create table for student's GWA (per semester)*/
-		$table = $stdno."/gwa";
-		$sql = "CREATE TABLE `".$table."`
-		(
-		Semester varchar(10) NOT NULL,
-		SchoolYear varchar(10) NOT NULL,
-		GWA float NULL
-		)";
-		mysql_query($sql,$con);
+		/*make value of $stdtype the name of the table to which the student should be inserted*/
+		if($stdtype=="waitlisted") $stdtype="waitlist_students";
+		else if($stdtype=="upcatpasser") $stdtype="upcat_passers";
 		
-		/*insert student to database*/
-		$result = mysql_query("INSERT INTO waitlist_students VALUES ('".$stdno."', '".$lname."', 
-					'".$fname."', '".$mi."', '".$lang."', '".$rdg."', '".$math."', 
-					'".$sci."', '".$upg."', '".$gender."', '".$region."','NULL')");
+		/*create index for student for easy searching*/
+		$result = mysql_query("INSERT INTO students_list VALUES('".$stdno."','".$stdtype."')");
+		
+		if($result>0){
+			/*create table for student's grades*/
+			$sql = "CREATE TABLE `".$stdno."`
+			(
+			`CourseNumber` varchar(20) NOT NULL,
+			`CourseTitle` varchar(100) NOT NULL,
+			`Grade` varchar(4) NOT NULL,
+			`Units` float NOT NULL,
+			`Semester` varchar(30) NOT NULL,
+			`SchoolYear` varchar(20) NOT NULL
+			)";
+			mysql_query($sql,$con);
+		
+			/*create table for student's GWA (per semester)*/
+			$table = $stdno."/gwa";
+			$sql = "CREATE TABLE `".$table."`
+			(
+			Semester varchar(10) NOT NULL,
+			SchoolYear varchar(10) NOT NULL,
+			GWA float NULL
+			)";
+			mysql_query($sql,$con);
+		
+			/*insert student to database*/
+			if($stdtype=="waitlist_students") $sql = "INSERT INTO waitlist_students VALUES ('".$stdno."', '".$lname."', 
+						'".$fname."', '".$mi."', '".$lang."', '".$rdg."', '".$math."',
+						'".$sci."', '".$upg."', '".$gender."', '".$region."','NULL')";
+			else if($stdtype=="upcat_passers") $sql = "INSERT INTO upcat_passers VALUES ('".$stdno."', '".$lname."', 
+						'".$fname."', '".$mi."', '".$gender."', '".$region."','NULL')";
+			mysql_query($sql);
+			mysql_query($sql);
+		}
 		
 		$connect->closeconnection($con);
 		
@@ -68,19 +93,19 @@ class StudentManager
 		}
 	}
 	
-	function updateStudent($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
+	function updateStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
 	{
 		$connect = new dbconnection();
 		$con = $connect->connectdb();
-
-		/*update the query*/
-		$result = mysql_query("UPDATE waitlist_students SET LastName='$lname', FirstName='$fname', MiddleInitial='$mi', Language='$lang', Reading='$rdg', Mathematics='$math', Science='$sci', UPG='$upg', Gender='$gender', Region='$region' WHERE StudentNumber LIKE '$stdno'");
 		
-		$num_of_rows = mysql_num_rows($result);
+		/*update the query*/
+		if(stdtype=="waitlist_students") $result = mysql_query("UPDATE $stdtype SET LastName='$lname', FirstName='$fname', MiddleInitial='$mi', Language='$lang', Reading='$rdg', Mathematics='$math', Science='$sci', UPG='$upg', Gender='$gender', Region='$region' WHERE StudentNumber LIKE '$stdno'");
+		else $result = mysql_query("UPDATE $stdtype SET LastName='$lname', FirstName='$fname', MiddleInitial='$mi', Gender='$gender', Region='$region' WHERE StudentNumber LIKE '$stdno'");
+		
+		//$num_of_rows = mysql_num_rows($result);
 		$connect->closeconnection($con);
 		
-		if($result>0) return $result;
-		else return $result;
+		return $result;
 	}
 	
 	function showStudents($category,$query)
@@ -92,25 +117,29 @@ class StudentManager
 		$result = $connect->searchStudents($category, $query);
 		
 		/*print the table*/
+		$row = mysql_fetch_array($result);
 		echo "<table id='result'>
 			<tr><th  id='student'>Student Number</th><th  id='student'>Last Name</th><th  id='student'>First Name</th>
-			<th  id='student'>Middle Initial</th><th  id='student'>Language</th><th  id='student'>Reading</th>
-			<th  id='student'>Mathematics</th><th  id='student'>Science</th><th  id='student'>UPG</th>
-			<th  id='student'>Gender</th><th  id='student'>Region</th>
-			<th  id='student' colspan='2'>Modify</th><th id='student'>Grades</th></tr>";//table headers
+			<th  id='student'>Middle Initial</th>";
+		if(isset($row['Language'])) echo "<th  id='student'>Language</th><th  id='student'>Reading</th>
+			<th  id='student'>Mathematics</th><th  id='student'>Science</th><th  id='student'>UPG</th>";
+		echo "<th  id='student'>Gender</th><th  id='student'>Region</th>
+			<th  id='student' colspan='2'>Modify</th><th id='student' colspan='2'>Grades</th></tr>";//table headers
 			
-			while($row = mysql_fetch_array($result)){
+			do{
 				echo "<tr>";
 				echo "<td id='result'>".$row['StudentNumber']."</td>
 					  <td id='result'>".$row['LastName']."</td>
 					  <td id='result'>".$row['FirstName']."</td>
-					  <td id='result'>".$row['MiddleInitial']."</td>
-					  <td id='result'>".$row['Language']."</td>
+					  <td id='result'>".$row['MiddleInitial']."</td>";
+				if(isset($row['Language'])){
+					  echo "<td id='result'>".$row['Language']."</td>
 					  <td id='result'>".$row['Reading']."</td>
 					  <td id='result'>".$row['Mathematics']."</td>
 					  <td id='result'>".$row['Science']."</td>
-					  <td id='result'>".$row['UPG']."</td>
-					  <td id='result'>".$row['Gender']."</td>
+					  <td id='result'>".$row['UPG']."</td>";
+				}
+				echo "<td id='result'>".$row['Gender']."</td>
 					  <td id='result'>".$row['Region']."</td>
 					  <td><input type='button' name='edit' id='edit".$row['StudentNumber']."' value='edit' title='".$row['StudentNumber']."'/></td>
 					  <td><input type='button' name='edit' id='delete".$row['StudentNumber']."' value='delete' title='".$row['StudentNumber']."'/></td>
@@ -129,19 +158,19 @@ class StudentManager
 									location.href = 'addgrade.php';
 								});
 					  </script>";
-			}//print each row
+			}while($row = mysql_fetch_array($result));//print each row
 			echo "</table>";
 		
 		$connect->closeconnection($con);
 	}
 	
-	function removeStudent($stdno)
+	function removeStudent($table,$stdno)
 	{
 		$connect = new dbconnection();
 		$con = $connect->connectdb();
 		
 		/*delete the student from the table*/
-		$result = mysql_query("DELETE FROM waitlist_students WHERE StudentNumber='".$stdno."'");
+		mysql_query("DELETE FROM $table WHERE StudentNumber='$stdno'");
 		
 		/*drop table that contains student grades*/
 		$sql = "DROP TABLE `".$stdno."`";
@@ -151,6 +180,9 @@ class StudentManager
 		$table = $stdno."/gwa";
 		$sql = "DROP TABLE `".$table."`";
 		mysql_query($sql,$con);
+		
+		/*drop the student from the students_list table*/
+		$result = mysql_query("DELETE FROM students_list WHERE StudentNumber='$stdno'");
 		
 		$connect->closeconnection($con);
 		

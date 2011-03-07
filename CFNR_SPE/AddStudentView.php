@@ -13,9 +13,12 @@ class AddStudentView
 	function AddStudentView() {
 	}
 	
-	function validateInfo($stdno,$lname,$fname,$mi,$lang,$rdg,
+	function validateInfo($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,
         $math,$sci,$upg,$gender,$region) {
 		
+		if($stdtype=="upcatpasser"){
+			$lang=1;$rdg=1;$math=1;$sci=1;$upg=1;
+		}
 		$error = 0;
 		
 		$link = "Location: add.php?stdno=".$stdno."&lname=".$lname."&fname=".$fname.
@@ -91,7 +94,7 @@ class AddStudentView
 		if($error==1) header($link);//there are errors present
 		else{
 			$asc = new AddStudentController();
-			$asc->addStudent($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
+			$asc->addStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
 				  $gender,$region);
 		}//there are no errors
 	}
@@ -99,6 +102,7 @@ class AddStudentView
 	function requestAddStudent()
 	{
 		/*get submitted information*/
+		$stdtype = $_POST[studentType];
 		$stdno = $_POST['stdno'];
 		$lname = $_POST['lname'];
 		$fname = $_POST['fname'];
@@ -112,7 +116,7 @@ class AddStudentView
 		$region = $_POST['region'];
 		
 		$addstudentview2 = new AddStudentView();
-		$addstudentview2->validateInfo($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
+		$addstudentview2->validateInfo($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
 			   $gender,$region);
 	}
 	

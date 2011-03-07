@@ -13,8 +13,12 @@ include "dbconnection.php";
 	$connect = new dbconnection();
 	$con = $connect->connectdb();
 	
-	/*search for the student*/
-	$result = mysql_query("SELECT * FROM waitlist_students where StudentNumber='$stdno'");
+	/*search for the table first then the student*/
+	$result = mysql_query("SELECT TableName FROM students_list WHERE StudentNumber='$stdno'");
+	$row = mysql_fetch_array($result);
+	$table = $row['TableName'];
+	
+	$result = mysql_query("SELECT * FROM $table WHERE StudentNumber='$stdno'");
 	$row = mysql_fetch_array($result);
 	
 ?>

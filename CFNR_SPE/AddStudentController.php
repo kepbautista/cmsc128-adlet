@@ -13,7 +13,7 @@ class AddStudentController
 	function AddStudentController(){
 	}
 	
-	function addStudent($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
+	function addStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
 	{
 		$link = "Location: add.php?stdno=".$stdno."&lname=".$lname."&fname=".$fname.
 				"&mi=".$mi."&lang=".$lang."&rdg=".$rdg."&math=".$math."&sci=".$sci.
@@ -35,7 +35,7 @@ class AddStudentController
 		
 		$student = new AddStudentView(); //instance of AddStudentView
 		$sm = new StudentManager(); //instance of StudentManager
-		$addsuccess = $sm->insertStudent($stdno,$lname,$fname,$mi,$lang,$rdg,
+		$addsuccess = $sm->insertStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,
 		      $math,$sci,$upg,$gender,$region);
 		
 		echo $addsuccess;

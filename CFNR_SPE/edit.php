@@ -14,8 +14,13 @@ include "dbconnection.php";
 	$connect = new dbconnection();
 	$con = $connect->connectdb();
 	
+	/*search for tablename in students_list*/
+	$result = mysql_query("SELECT TableName FROM students_list WHERE StudentNumber='$stdno'");
+	$row = mysql_fetch_array($result);
+	$table = $row['TableName'];
+	
 	/*search for the student*/
-	$result = mysql_query("SELECT * FROM waitlist_students where StudentNumber='$stdno'");
+	$result = mysql_query("SELECT * FROM $table where StudentNumber='$stdno'");
 	$row = mysql_fetch_array($result);
 	
 ?>
@@ -46,26 +51,28 @@ include "dbconnection.php";
 				<td>Middle Initial:</td>
 				<td><input type="text" name="mi" value="<?php echo $row['MiddleInitial']; ?>"/></td>
 			</tr>
-			<tr>
+			<?php
+			if($table=="waitlist_students") echo "<tr>
 				<td>Language:</td>
-				<td><input type="text" name="lang" value="<?php echo $row['Language']; ?>"/></td>
+				<td><input type='text' name='lang' value='".$row['Language']."'/></td>
 			</tr>
 			<tr>
 				<td>Reading:</td>
-				<td><input type="text" name="rdg" value="<?php echo $row['Reading']; ?>"/></td>
+				<td><input type='text' name='rdg' value='".$row['Reading']."'/></td>
 			</tr>
 			<tr>
 				<td>Mathematics:</td>
-				<td><input type="text" name="math" value="<?php echo $row['Mathematics']; ?>"/></td>
+				<td><input type='text' name='math' value='".$row['Mathematics']."'/></td>
 			</tr>
 			<tr>
 				<td>Science:</td>
-				<td><input type="text" name="sci" value="<?php echo $row['Science']; ?>"/></td>
+				<td><input type='text' name='sci' value='".$row['Science']."'/></td>
 			</tr>
 			<tr>
 				<td>UPG:</td>
-				<td><input type="text" name="upg" value="<?php echo $row['UPG']; ?>"/></td>
-			</tr>
+				<td><input type='text' name='upg' value='".$row['UPG']."'/></td>
+			</tr>";
+			?>
 			<tr>
 				<td>Gender:</td>
 				<td>

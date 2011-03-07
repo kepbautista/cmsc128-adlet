@@ -9,9 +9,12 @@ session_start();
 include "EditStudentController.php";
 class EditStudentView
 {
-	function validateInfo($stdno,$lname,$fname,$mi,$lang,$rdg,
+	function validateInfo($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,
         $math,$sci,$upg,$gender,$region) {
 		
+		if($stdtype=="upcat_passers"){
+			$lang=1;$rdg=1;$math=1;$sci=1;$upg=1;
+		}
 		$error = 0;
 		
 		$link = "Location: edit.php?";
@@ -93,15 +96,18 @@ class EditStudentView
 		
 		if($error==1) header($link);//there are errors present
 		else{
-			$asc = new EditStudentController();
-			$asc->editStudent($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
+			$esc = new EditStudentController();
+			$esc->editStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
 				  $gender,$region);
 		}//there are no errors
 	}
 	
 	function requestEditStudent(){
 		/*get submitted information*/
+		$studentmanager = new StudentManager();
+		
 		$stdno = $_SESSION['modifyStdno'];
+		$stdtype = $studentmanager->determineTable($stdno);
 		$lname = $_POST['lname'];
 		$fname = $_POST['fname'];
 		$mi = $_POST['mi'];
@@ -114,7 +120,7 @@ class EditStudentView
 		$region = $_POST['region'];
 		
 		$editstudentview2 = new EditStudentView();
-		$editstudentview2->validateInfo($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
+		$editstudentview2->validateInfo($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
 			   $gender,$region);
 	}
 	

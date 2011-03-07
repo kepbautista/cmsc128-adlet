@@ -8,6 +8,26 @@
 	<head>
 		<title>CFNR Student Performance Evaluator</title>
 		<link rel="stylesheet" type="text/css" href="styles/styles.css" />
+		<script type='text/javascript' src='jquery-1.4.1.min.js'></script>
+		<script type='text/javascript'>
+		$(document).ready(function(){
+			$('#waitlisted').click(function(){
+				$("#lang").show();
+				$("#rdg").show();
+				$("#math").show();
+				$("#sci").show();
+				$("#upg").show();
+			});
+			
+			$('#upcatpasser').click(function(){
+				$("#lang").hide();
+				$("#rdg").hide();
+				$("#math").hide();
+				$("#sci").hide();
+				$("#upg").hide();
+			});
+		});//script for student type radio buttons
+		</script>
 	</head>
 <body id="addStudent">
 <h1>CFNR Student Performance Evaluator</h1>
@@ -65,6 +85,13 @@
 				<th colspan='2'>Enter Information:</th>
 			</tr>
 			<tr>
+				<td>Student Type:</td>
+				<td>
+				<input type="radio" name="studentType" id="waitlisted" value="waitlisted" checked="true"/><label for="waitlisted">Waitlisted</label>
+				<input type="radio" name="studentType" id="upcatpasser" value="upcatpasser"/><label for="upcatpasser">UPCAT Passer</label>
+				</td>
+			</tr>
+			<tr>
 				<td>Student Number:</td>
 				<td><input type="text" name="stdno" <?php if(isset($_GET['stdno'])) echo "value='".$_GET['stdno']."'"?>/></td>
 			</tr>
@@ -80,25 +107,25 @@
 				<td>Middle Initial:</td>
 				<td><input type="text" name="mi" <?php if(isset($_GET['mi'])) echo "value='".$_GET['mi']."'"?>/></td>
 			</tr>
-			<tr>
+			<tr id="lang">
 				<td>Language:</td>
-				<td><input type="text" name="lang" <?php if(isset($_GET['lang'])) echo "value='".$_GET['lang']."'"?>/></td>
+				<td><input type="text" name="lang"<?php if(isset($_GET['lang'])) echo "value='".$_GET['lang']."'"?>/></td>
 			</tr>
-			<tr>
+			<tr id="rdg">
 				<td>Reading:</td>
-				<td><input type="text" name="rdg" <?php if(isset($_GET['rdg'])) echo "value='".$_GET['rdg']."'"?>/></td>
+				<td><input type="text" name="rdg"<?php if(isset($_GET['rdg'])) echo "value='".$_GET['rdg']."'"?>/></td>
 			</tr>
-			<tr>
+			<tr id="math">
 				<td>Mathematics:</td>
-				<td><input type="text" name="math" <?php if(isset($_GET['math'])) echo "value='".$_GET['math']."'"?>/></td>
+				<td><input type="text" name="math"<?php if(isset($_GET['math'])) echo "value='".$_GET['math']."'"?>/></td>
 			</tr>
-			<tr>
+			<tr id="sci">
 				<td>Science:</td>
-				<td><input type="text" name="sci" <?php if(isset($_GET['sci'])) echo "value='".$_GET['sci']."'"?>/></td>
+				<td><input type="text" name="sci"<?php if(isset($_GET['sci'])) echo "value='".$_GET['sci']."'"?>/></td>
 			</tr>
-			<tr>
+			<tr id="upg">
 				<td>UPG:</td>
-				<td><input type="text" name="upg" <?php if(isset($_GET['upg'])) echo "value='".$_GET['upg']."'"?>/></td>
+				<td><input type="text" name="upg"<?php if(isset($_GET['upg'])) echo "value='".$_GET['upg']."'"?>/></td>
 			</tr>
 			<tr>
 				<td>Gender:</td>

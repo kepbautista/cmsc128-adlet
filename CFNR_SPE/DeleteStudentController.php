@@ -11,7 +11,8 @@ class DeleteStudentController
 {
 	function deleteStudent($stdno){
 		$studentmgr = new StudentManager();
-		$deletesuccess = $studentmgr->removeStudent($stdno);
+		$table = $studentmgr->determineTable($stdno);
+		$deletesuccess = $studentmgr->removeStudent($table,$stdno);
 		
 		$deletestudentview = new DeleteStudentView();
 		if($deletesuccess==1)$deletestudentview->showMessage(1);

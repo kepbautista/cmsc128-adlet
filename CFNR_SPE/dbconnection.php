@@ -21,13 +21,22 @@ class dbconnection {
 	}//close database connection
 	
 	function searchStudents($category, $query) {
-		if($category=="stdno")$result = mysql_query("SELECT * FROM waitlist_students where StudentNumber='$query'");
+		$numrows2=-1;
+		if($category=="stdno"){
+			$row = mysql_query("SELECT TableName FROM students_list WHERE StudentNumber='$query'");
+			$row = mysql_fetch_array($row);
+			$table = $row['TableName'];
+			$result = mysql_query("SELECT * FROM $table where StudentNumber='$query'");
+		}
 		else if($category=="fullname"){
 			$firstname = strtok($query,"/");
 			$middleinit = strtok("/");
 			$lastname = strtok("/");
 			
 			$result = mysql_query("SELECT * FROM waitlist_students WHERE FirstName='$firstname' and MiddleInitial='$middleinit' and LastName='$lastname'");
+			$result2 = mysql_query("SELECT * FROM upcat_passers WHERE FirstName='$firstname' and MiddleInitial='$middleinit' and LastName='$lastname'");
+			
+			$numrows2 = mysql_num_rows($result2);
 		}
 		else if($category=="language") $result = mysql_query("SELECT * FROM waitlist_students where Language='$query'");
 		else if($category=="reading") $result = mysql_query("SELECT * FROM waitlist_students where Reading='$query'");
@@ -35,7 +44,8 @@ class dbconnection {
 		else if($category=="science") $result = mysql_query("SELECT * FROM waitlist_students where Science='$query'");
 		else if($category=="upg") $result = mysql_query("SELECT * FROM waitlist_students where UPG LIKE '$query'");
 		
-		return $result;
+		if($numrows2>0) return $result2;
+		else return $result;
 	}
 }
 
