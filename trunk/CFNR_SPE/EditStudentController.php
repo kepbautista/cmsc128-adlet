@@ -6,7 +6,7 @@ class EditStudentController
 	function EditStudentController(){
 	}
 	
-	function editStudent($stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
+	function editStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,$gender,$region)
 	{
 		/*transform each information to uppercase letters
 		& remove white spaces before and after*/
@@ -24,7 +24,7 @@ class EditStudentController
 		
 		$editstudentview = new EditStudentView(); //instance of EditStudentView
 		$studentmanager = new StudentManager(); //instance of StudentManager
-		$editsuccess = $studentmanager->updateStudent($stdno,$lname,$fname,$mi,$rdg,
+		$editsuccess = $studentmanager->updateStudent($stdtype,$stdno,$lname,$fname,$mi,$rdg,
 		    $lang,$math,$sci,$upg,$gender,$region);
 		
 		echo $editsuccess;
