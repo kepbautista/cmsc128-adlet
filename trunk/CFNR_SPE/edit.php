@@ -135,6 +135,8 @@ include "dbconnection.php";
 	<?php
 			if(isset($_GET['editsuccess']))
 				header("Location: search.php?editsuccess=1");
+			else if(isset($_GET['editedgrade']))
+				header("Location: search.php?editedgrade=1");
 			else{
 				echo "<ul>";
 				if(isset($_GET['editnotsuccess']))

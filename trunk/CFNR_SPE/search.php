@@ -1,7 +1,6 @@
 <!--
   - File Name: search.php
   - Version Information: Version 1.0
-  - Date: 
   - Program Description: form for searching students
   -->
 <?php
@@ -113,11 +112,12 @@
 		<?php
 			if(isset($_GET['editsuccess']))
 				echo "<h3>Student is successfully updated.</h3>";//student was updated
-			if(isset($_GET['deletesuccess']))
+			else if(isset($_GET['deletesuccess']))
 				echo "<h3>Student is successfully deleted.</h3>";//student was deleted
 			else if(isset($_GET['deletenotsuccess']))
 				echo "<h3>Student is NOT successfully deleted.</h3>";//student was not deleted
 			else if(isset($_GET['addgradesuccess']))
+				echo "<h3>Grade successfully added.</h3>";
 			echo "<ul>";
 				if(isset($_GET['isnull']))
 					echo "<li>Enter query to be searched.</li>";

@@ -27,7 +27,6 @@ class EditStudentController
 		$editsuccess = $studentmanager->updateStudent($stdtype,$stdno,$lname,$fname,$mi,$rdg,
 		    $lang,$math,$sci,$upg,$gender,$region);
 		
-		echo $editsuccess;
 		if($editsuccess>0) $editstudentview->showMessage($editsuccess); //successfully edited student
 		else $editstudentview->showMessage($editsuccess); //unsuccessfully edited student
 	}
