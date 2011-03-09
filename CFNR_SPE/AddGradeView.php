@@ -13,6 +13,35 @@ class AddGradeView {
 		$link = "Location: addgrade.php?";
 		$error = 0;
 		
+		$connect = new dbconnection();
+		$con = $connect->connectdb();
+		
+		/*check for duplicate subjects in one semester
+		  (based on the database)
+		*/
+		foreach($cnum as $value) {
+			$check = trim(strtoupper($value));
+			$sql = "SELECT * FROM `".$table."` WHERE CourseNumber like '$check' AND Semester like '$sem' AND SchoolYear LIKE '$sy'";
+			$checker = mysql_query($sql,$con);
+			
+			if(mysql_num_rows($checker)!=0) {
+				$link = $link."duplicateDB=1&";
+				$error = 1;
+			}
+		}
+		
+		$connect->closeconnection($con);
+		
+		/*check for duplicate subjects in one semester
+		  (based on the array of inputs)*/
+		$checker = array_count_values($cnum);
+		foreach($checker as $value){
+			if($value>1){
+				$link = $link."duplicateInput=1&";
+				$error = 1;
+			}
+		}
+		
 		/*check if the user has input a school year*/
 		if($sy==null) {
 			$link = $link."nullsy=1&";

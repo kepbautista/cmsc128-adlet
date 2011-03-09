@@ -143,7 +143,8 @@ class StudentManager
 					  <td id='result'>".$row['Region']."</td>
 					  <td><input type='button' name='edit' id='edit".$row['StudentNumber']."' value='edit' title='".$row['StudentNumber']."'/></td>
 					  <td><input type='button' name='edit' id='delete".$row['StudentNumber']."' value='delete' title='".$row['StudentNumber']."'/></td>
-					  <td id='result'><input type='button' name='edit' id='addgrade".$row['StudentNumber']."' value='addgrade' title='".$row['StudentNumber']."'/></td>";
+					  <td id='result'><input type='button' name='edit' id='addgrade".$row['StudentNumber']."' value='addgrade' title='".$row['StudentNumber']."'/></td>
+					  <td id='result'><input type='button' name='edit' id='viewgrade".$row['StudentNumber']."' value='viewgrade' title='".$row['StudentNumber']."'/></td>";
 				echo "</tr>";
 				echo "<script>$('#edit".$row['StudentNumber']."').click(function(){
 									$.post('modify.php', {stdno: $('#edit".$row['StudentNumber']."').attr('title')});
@@ -156,6 +157,10 @@ class StudentManager
 								$('#addgrade".$row['StudentNumber']."').click(function(){
 									$.post('modify.php', {stdno: $('#addgrade".$row['StudentNumber']."').attr('title')});
 									location.href = 'addgrade.php';
+								})
+								$('#viewgrade".$row['StudentNumber']."').click(function(){
+									$.post('modify.php', {stdno: $('#viewgrade".$row['StudentNumber']."').attr('title')});
+									location.href = 'displaygrade.php';
 								});
 					  </script>";
 			}while($row = mysql_fetch_array($result));//print each row

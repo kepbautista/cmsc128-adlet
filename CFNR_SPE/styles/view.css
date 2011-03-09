@@ -3,7 +3,7 @@ text-align: center
 }
 
 h2{
-text-align: center;
+text-align: left;
 background-color: #ffd700;
 }
 
@@ -19,6 +19,7 @@ background-color: #dc403c;
 #result{
 border: 1px solid black;
 border-collapse: collapse;
+padding: 10px;
 }
 
 #count_results{

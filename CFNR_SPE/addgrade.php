@@ -100,6 +100,8 @@ include "dbconnection.php";
 				echo "<ul>";
 				if(isset($_GET['addgradenotsuccess']))
 					echo "<li>Student Grades are not successfully added.</li>";
+				if((isset($_GET['duplicateInput'])) || (isset($_GET['duplicateDB'])))
+					echo "<li>Duplication of subjects in a semester is not allowed.</li>";
 				if(isset($_GET['nullsy']))
 					echo "<li>School Year should not be empty.</li>";
 				if(isset($_GET['nulln']))
