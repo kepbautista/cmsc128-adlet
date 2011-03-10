@@ -1,0 +1,22 @@
+-Bawal ang same Course Number sa isang sem
+-Yung Editing about sa subjects, walang primary key.
+-Grade Modification
+ -> recompute GWA
+Non-waitlist
+*"Pag walang subjects, dapat tanggal na yung table" (Aguirre, 2011)
+Running GWA ng upcat passers
+*About sa GWA after editing of grades
+ -same school year
+ -different school years
+ -different school years & matatanggalan na ng laman yung isang sem
+
+Nice to have:
+-Check kung tama ang format ng School Year :) Thanks
+Pagdating natin sa security...
+may times na tatanggalin na natin yung mga modify something
+Yung student number na 2008, magkakaroon ng subject na less than sa kanyang year...
+'pag addgrade, edit or editgrade, magadanda sana kung na-reretain yung values sa search
+*drop-down yung semester sa edit
+
+Choosing Randomly...
+SELECT * FROM `sometable` WHERE 1 ORDER BY RAND() LIMIT 1
