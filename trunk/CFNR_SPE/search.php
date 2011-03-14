@@ -6,7 +6,7 @@
 <?php
 	session_start();
 	include "StudentManager.php";
-	//unset($_SESSION['editStdno']);
+	unset($_SESSION['modifyStdno']);
 ?>
 <html>
 	<head>
@@ -119,32 +119,42 @@
 			else if(isset($_GET['addgradesuccess']))
 				echo "<h3>Grade successfully added.</h3>";
 			echo "<ul>";
-				if(isset($_GET['isnull']))
+				if(isset($_SESSION['isnull']))
 					echo "<li>Enter query to be searched.</li>";
-				if(isset($_GET['fullnameerror']))
+				if(isset($_SESSION['fullnameerror']))
 					echo "<li>All fields are required.</li>";
-				if(isset($_GET['wrongstdno']))
+				if(isset($_SESSION['wrongstdno']))
 					echo "<li>Wrong student number format. Correct form is 2009 -12345.</li>";
-				if(isset($_GET['notnum']))
+				if(isset($_SESSION['notnum']))
 					echo "<li>Should be a number.</li>";
-				if(isset($_GET['negnum']))
+				if(isset($_SESSION['negnum']))
 					echo "<li>Grade should not be negative.</li>";	
-				if(isset($_GET['searchnull']))
+				if(isset($_SESSION['searchnull']))
 					echo "<li>No match found.</li>";
 				
 				echo "<form name='search' id='studentList' method='post' action='edit.php'><br/>";
-				if((isset($_GET['searchsuccess']))&&(isset($_GET['query']))) {
-					if($_GET['searchsuccess']!=0) {
+				if((isset($_SESSION['searchsuccess']))&&(isset($_SESSION['query']))) {
+					if($_SESSION['searchsuccess']!=0) {
 						$display = new StudentManager();
-						$display->showStudents($_GET['category'],$_GET['query']);
+						$display->showStudents($_SESSION['category'],$_SESSION['query']);
 					}
 				}
 				echo "<br/></form>";
-				
-				if(isset($_GET['name']))
-					echo $_GET['name'];
 			echo "</ul>";
 		?>
 		<p><br/></p></div>
 	</body>
 </html>
+
+<?php
+	if(isset($_SESSION['isnull'])) unset($_SESSION['isnull']);
+	if(isset($_SESSION['fullnameerror'])) unset($_SESSION['fullnameerror']);
+	if(isset($_SESSION['wrongstdno'])) unset($_SESSION['wrongstdno']);
+	if(isset($_SESSION['notnum'])) unset($_SESSION['notnum']);
+	if(isset($_SESSION['negnum'])) unset($_SESSION['negnum']);
+	if(isset($_SESSION['searchnull'])) unset($_SESSION['searchnull']);
+	if(isset($_SESSION['searchsuccess'])) unset($_SESSION['searchsuccess']);
+	
+	if(isset($_SESSION['category'])) unset($_SESSION['category']);
+	if(isset($_SESSION['query'])) unset($_SESSION['query']);
+?>

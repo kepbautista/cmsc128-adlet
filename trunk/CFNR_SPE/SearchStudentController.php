@@ -23,8 +23,8 @@ class SearchStudentController
 		$searchsuccess = $studentmanager->retrieveStudent($category,$query);
 		
 		$searchstudentv = new SearchStudentView();
-		if($searchsuccess == 0) $searchstudentv->showMessage(0,$query);//unsuccessful search student
-		else header("Location: search.php?searchsuccess=1&category=".$category."&query=".$query);//successful search student
+		if($searchsuccess == 0) $searchstudentv->showMessage(0,null,null);//unsuccessful search student
+		else  $searchstudentv->showMessage(1,$category,$query);//unsuccessful search student
 	}
 }
 ?>

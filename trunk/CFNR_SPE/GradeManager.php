@@ -64,9 +64,12 @@ class GradeManager {
 			mysql_query($sql,$con);
 		} //semester is already in the table
 		
+		$result = mysql_query("SELECT TableName from students_list WHERE StudentNumber='$table'");
+		$stdtype = mysql_fetch_array($result);
+		$stdtype = $stdtype['TableName'];
 		/*Compute Running GWA*/
 		$gwa = $gm->ComputeGWA($table,$con,"running",$sy);
-		mysql_query("UPDATE waitlist_students SET GWA='$gwa' WHERE StudentNumber LIKE '$table'");
+		mysql_query("UPDATE $stdtype SET GWA='$gwa' WHERE StudentNumber LIKE '$table'");
 		
 		$connect->closeconnection($con);
 		

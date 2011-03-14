@@ -29,7 +29,7 @@ include "dbconnection.php";
 	<div id="addgradediv">
 	<!-- Form for determining number of subjects to be entered-->
 	<form method="post" action="<?php $ind=$_SERVER['PHP_SELF']; echo $ind;?>">
-		<h3>ENTER GRADES FOR <?php echo $row['FirstName']." ".$row['LastName']; ?></h3>
+		<h3>ENTER GRADES FOR <?php echo $row['FirstName']." ".$row['LastName']; ?> (<?php echo $row['StudentNumber']; ?>)</h3>
 		<?php
 		if(!isset($_POST['N'])){
 		echo '<table>

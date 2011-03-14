@@ -55,7 +55,7 @@ class AddGradeView {
 		}
 		
 		/*check if the number of courses is numeric*/
-		if(!is_numeric($n)){
+		if(($n!=null) && (!is_numeric($n))){
 			$link = $link."nnotnum=1&";
 			$error = 1;
 		}

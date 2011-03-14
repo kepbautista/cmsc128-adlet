@@ -17,9 +17,9 @@ class EditStudentView
 		}
 		$error = 0;
 		
-		$link = "Location: edit.php?";
+		$link = "";
 		
-		if($rdg==null) {
+		if(($rdg==null) || ($lname==null) || ($fname==null) || ($mi==null) || ($lang==null) || ($math==null) || ($sci==null) || ($upg==null)) {
 			$link = $link."isnull=1&";
 			$error = 1;
 		}/*no reading grade*/
@@ -34,11 +34,6 @@ class EditStudentView
 			$error = 1;
 		}/*reading grade is negative*/
 		
-		if($lang==null) {
-			$link = $link."isnull=1&";
-			$error = 1;
-		}/*no language grade*/
-		
 		if($lang!=null && !is_numeric($lang)) {
 			$link = $link."langnotnum=1&";	
 			$error = 1;
@@ -48,11 +43,6 @@ class EditStudentView
 			$link = $link."negativelang=1&";
 			$error = 1;
 		}/*language grade is a negative number*/
-		
-		if($math==null) {
-			$link = $link."isnull=1&";
-			$error = 1;
-		}/*no mathematics grade*/
 		
 		if($math!=null && !is_numeric($math)) {
 			$link = $link."mathnotnum=1&";
@@ -64,11 +54,6 @@ class EditStudentView
 			$error = 1;
 		}/*mathematics grade is a negative number*/
 		
-		if($sci==null) {
-			$link = $link."isnull=1&";
-			$error = 1;
-		}/*no science grade*/
-		
 		if($sci!=null && !is_numeric($sci)) {
 			$link = $link."scinotnum=1&";
 			$error = 1;
@@ -78,11 +63,6 @@ class EditStudentView
 			$link = $link."negativesci=1&";
 			$error = 1;
 		}/*science grade is a negative number*/
-		
-		if($upg==null){
-			$link = $link."isnull=1&";
-			$error = 1;
-		}/*no upg*/
 		
 		if($upg!=null && !is_numeric($upg)){
 			$link = $link."upgnotnum=1&";
@@ -94,7 +74,15 @@ class EditStudentView
 			$error = 1;
 		}/*upg is a negative number*/
 		
-		if($error==1) header($link);//there are errors present
+		if($error==1){
+			if($stdtype=="upcatpasser"){
+				$lang=null;$rdg=null;$math=null;$sci=null;$upg=null;
+			}
+			$link = "Location: edit.php?error=1&lname=$lname&
+				fname=$fname&mi=$mi&lang=$lang&rdg=$rdg&
+				math=$math&sci=$sci&upg=$upg&gender=$gender&region=$region&".$link;
+			header($link);//there are errors present
+		}
 		else{
 			$esc = new EditStudentController();
 			$esc->editStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,

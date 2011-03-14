@@ -5,21 +5,21 @@
   - Program Description: Search Student Form Validation
   -->
 <?php
+session_start();
 include("SearchStudentController.php");
 
 class searchStudentView
 {
 	function validateInfo($category, $query){
 		$error = 0;
-		$link = "Location: search.php?";
 		
 		if($query==null){
-			$link = $link."isnull=1&";
+			$_SESSION['isnull'] = 1;
 			$error = 1;
 		}/*no query entered*/
 		
 		if($query!=null && !preg_match('/([0-9]{4})\-([0-9]{5})/',$query) && $category=="stdno"){
-			$link = $link."wrongstdno=1&";
+			$_SESSION['wrongstdno'] = 1;
 			$error = 1;
 		}/*wrong student number format*/
 		
@@ -29,22 +29,22 @@ class searchStudentView
 			$lastname = strtok("/");
 			
 			if(($firstname==false) || ($middleinit==false) || ($lastname==false)){
-				$link = $link."fullnameerror=1&";
+				$_SESSION['fullnameerror'] = 1;
 				$error = 1;
 			}
 		}/*no first name, middle initial or last name*/
 		
 		if((($category=="language")||($category=="reading") || ($category=="mathematics") || ($category=="science") || ($category=="upg")) && (!is_numeric($query)) && $query!=null){
-			$link = $link."notnum=1&";
+			$_SESSION['notnum'] = 1;
 			$error = 1;
 		}/*non-numeric grades*/
 		
 		if((($category=="language")||($category=="reading") || ($category=="mathematics") || ($category=="science") || ($category=="upg")) && ($query<0)){
-			$link = $link."negnum=1&";
+			$_SESSION['negnum'] = 1;
 			$error = 1;
 		}/*negative grades*/
 		
-		if($error==1) header($link);
+		if($error==1) header("Location: search.php");
 		else{
 			$ssc = new SearchStudentController();
 			$ssc->searchStudent($category,$query);
@@ -64,8 +64,16 @@ class searchStudentView
 		$searchstudentv->validateInfo($category,$query);
 	}
 	
-	function showMessage($flag,$query){
-		if($flag==0) header("Location: search.php?searchnull=1&query=".$query);//show message if student is not found
+	function showMessage($flag,$category,$query){
+		if($flag==0){
+			$_SESSION['searchnull'] = 1;
+			header("Location: search.php"); //show message if student is not found
+		}else{
+			$_SESSION['searchsuccess'] = 1;
+			$_SESSION['category'] = $category;
+			$_SESSION['query'] = $query;
+			header("Location: search.php"); //successful search student
+		}
 	}
 }
 
