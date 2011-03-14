@@ -14,15 +14,40 @@ include "dbconnection.php";
 	$connect = new dbconnection();
 	$con = $connect->connectdb();
 	
-	/*search for tablename in students_list*/
+	/*search for tablename in students_list table*/
 	$result = mysql_query("SELECT TableName FROM students_list WHERE StudentNumber='$stdno'");
 	$row = mysql_fetch_array($result);
 	$table = $row['TableName'];
 	
-	/*search for the student*/
-	$result = mysql_query("SELECT * FROM $table where StudentNumber='$stdno'");
-	$row = mysql_fetch_array($result);
-	
+	if(isset($_GET['error'])){
+		$lname = $_GET['lname'];
+		$fname = $_GET['fname'];
+		$mi = $_GET['mi'];
+		$lang = $_GET['lang'];
+		$rdg = $_GET['rdg'];
+		$math = $_GET['math'];
+		$sci = $_GET['sci'];
+		$upg = $_GET['upg'];
+		$gender = $_GET['gender'];
+		$region = $_GET['region'];
+	}else{
+		/*search for the student*/
+		$result = mysql_query("SELECT * FROM $table where StudentNumber='$stdno'");
+		$row = mysql_fetch_array($result);
+		
+		$lname = $row['LastName'];
+		$fname = $row['FirstName'];
+		$mi = $row['MiddleInitial'];
+		if($table=="waitlist_students"){
+			$lang = $row['Language'];
+			$rdg = $row['Reading'];
+			$math = $row['Mathematics'];
+			$sci = $row['Science'];
+			$upg = $row['UPG'];
+		}
+		$gender = $row['Gender'];
+		$region = $row['Region'];
+	}
 ?>
 
 <html>
@@ -41,43 +66,43 @@ include "dbconnection.php";
 		<table>
 			<tr>
 				<td>Last Name:</td>
-				<td><input type="text" name="lname" value="<?php echo $row['LastName']; ?>"/></td>
+				<td><input type="text" name="lname" value="<?php echo $lname; ?>"/></td>
 			</tr>
 			<tr>
 				<td>First Name:</td>
-				<td><input type="text" name="fname" value="<?php echo $row['FirstName']; ?>"/></td>
+				<td><input type="text" name="fname" value="<?php echo $fname; ?>"/></td>
 			</tr>
 			<tr>
 				<td>Middle Initial:</td>
-				<td><input type="text" name="mi" value="<?php echo $row['MiddleInitial']; ?>"/></td>
+				<td><input type="text" name="mi" value="<?php echo $mi; ?>"/></td>
 			</tr>
 			<?php
 			if($table=="waitlist_students") echo "<tr>
 				<td>Language:</td>
-				<td><input type='text' name='lang' value='".$row['Language']."'/></td>
+				<td><input type='text' name='lang' value='".$lang."'/></td>
 			</tr>
 			<tr>
 				<td>Reading:</td>
-				<td><input type='text' name='rdg' value='".$row['Reading']."'/></td>
+				<td><input type='text' name='rdg' value='".$rdg."'/></td>
 			</tr>
 			<tr>
 				<td>Mathematics:</td>
-				<td><input type='text' name='math' value='".$row['Mathematics']."'/></td>
+				<td><input type='text' name='math' value='".$math."'/></td>
 			</tr>
 			<tr>
 				<td>Science:</td>
-				<td><input type='text' name='sci' value='".$row['Science']."'/></td>
+				<td><input type='text' name='sci' value='".$sci."'/></td>
 			</tr>
 			<tr>
 				<td>UPG:</td>
-				<td><input type='text' name='upg' value='".$row['UPG']."'/></td>
+				<td><input type='text' name='upg' value='".$upg."'/></td>
 			</tr>";
 			?>
 			<tr>
 				<td>Gender:</td>
 				<td>
 				<select name="gender">
-					<?php if($row['Gender']=="F"){?>
+					<?php if($gender=="F"){?>
 					<option value="F" selected="selected">Female</option>
 					<option value="M">Male</option>
 					<?php }else{?>
@@ -92,40 +117,26 @@ include "dbconnection.php";
 				<td>
 				<select type="text" name="region" style="align:center"/>
 					<?php 
-						if($row['Region']=="NCR") echo "<option value='NCR' selected='selected'>NCR</option>";
+						if($region=="NCR") echo "<option value='NCR' selected='selected'>NCR</option>";
 						else echo "<option value='NCR'>NCR</option>";
-						if($row['Region']=="CAR") echo "<option value='CAR' selected='selected'>CAR</option>";
+						if($region=="CAR") echo "<option value='CAR' selected='selected'>CAR</option>";
 						else  echo "<option value='CAR'>CAR</option>";
-						if($row['Region']=="1")  echo "<option value='1' selected='selected'>1</option>";
-						else  echo "<option value='1'>1</option>";
-						if($row['Region']=="2")  echo "<option value='2' selected='selected;>2</option>";
-						else  echo "<option value='2'>2</option>";
-						if($row['Region']=="3")  echo "<option value'3' selected='selected'>3</option>";
-						else  echo "<option value='3'>3</option>";
-						if($row['Region']=="4-A")  echo "<option value='4-A' selected='selected'>4-A</option>";
-						else  echo "<option value='4-A'>4-A</option>";
-						if($row['Region']=="4-B")  echo "<option value='4-B' selected='selected'>4-B</option>";
-						else  echo "<option value='4-B'>4-B</option>";
-						if($row['Region']=="5")  echo "<option value='5' selected='selected'>5</option>";
-						else  echo "<option value='5'>5</option>";
-						if($row['Region']=="6")  echo "<option value='6' selected='selected'>6</option>";
-						else  echo "<option value='6'>6</option>";
-						if($row['Region']=="7")  echo "<option value='7' selected='selected'>7</option>";
-						else  echo "<option value='7'>7</option>";
-						if($row['Region']=="8")  echo "<option value='8' selected='selected'>8</option>";
-						else  echo "<option value='8'>8</option>";
-						if($row['Region']=="9")  echo "<option value='9' selected='selected'>9</option>";
-						else  echo "<option value='9'>9</option>";
-						if($row['Region']=="10")  echo "<option value='10' selected='selected'>10</option>";
-						else  echo "<option value='10'>10</option>";
-						if($row['Region']=="11")  echo "<option value='11' selected='selected'>11</option>";
-						else  echo "<option value='11'>11</option>";
-						if($row['Region']=="12")  echo "<option value='12' selected='selected'>12</option>";
-						else  echo "<option value='12'>12</option>";
-						if($row['Region']=="CARAGA")  echo "<option value='CARAGA' selected='selected'>CARAGA</option>";
-						else  echo "<option value='CARAGA'>CARAGA</option>";
-						if($row['Region']=="ARMM")  echo "<option value='ARMM' selected='selected'>ARMM</option>";
-						else  echo "<option value='ARMM'>ARMM</option>"; ?>
+						for($i=1;$i<12;$i++){
+							if($i==4){
+								if($region=="4-A")  echo "<option value='4-A' selected='selected'>4-A</option>";
+								else  echo "<option value='4-A'>4-A</option>";
+								if($region=="4-B")  echo "<option value='4-B' selected='selected'>4-B</option>";
+								else  echo "<option value='4-B'>4-B</option>";
+							}else{
+								if($region==$i) echo "<option value='".$i."' selected='selected'>".$i."</option>";
+								else  echo "<option value='".$i."'>".$i."</option>";
+							}
+						}
+							if($region=="CARAGA")  echo "<option value='CARAGA' selected='selected'>CARAGA</option>";
+							else  echo "<option value='CARAGA'>CARAGA</option>";
+							if($region=="ARMM")  echo "<option value='ARMM' selected='selected'>ARMM</option>";
+							else  echo "<option value='ARMM'>ARMM</option>";
+					?>
 				</td>
 			</tr>
 		</table>

@@ -5,6 +5,7 @@
   - Program Description: form for counting students per category
   -->
 <?php
+session_start();
 include "StudentManager.php";
 ?>
 <html>
@@ -36,9 +37,13 @@ include "StudentManager.php";
 	</form>
 	
 	<?php
-	if(isset($_GET['counted'])) {
-		$display = new StudentManager();
-		$display->tallyStudent($_GET['counted']);
+	$display = new StudentManager();
+	if(isset($_SESSION['countGender'])){
+		$display->tallyStudent($_SESSION['countGender']);
+		unset($_SESSION['countGender']);
+	}else if(isset($_SESSION['countRegion'])){
+		$display->tallyStudent($_SESSION['countRegion']);
+		unset($_SESSION['countRegion']);
 	}
 	?>
 	</div>

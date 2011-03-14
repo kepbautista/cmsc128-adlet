@@ -5,6 +5,7 @@
   - Program Description: Add Student Form Validation
   -->
 <?php
+session_start();
 include "AddStudentController.php";
 				
 class AddStudentView
@@ -21,77 +22,85 @@ class AddStudentView
 		}
 		$error = 0;
 		
-		$link = "Location: add.php?stdno=".$stdno."&lname=".$lname."&fname=".$fname.
-				"&mi=".$mi."&lang=".$lang."&rdg=".$rdg."&math=".$math."&sci=".$sci.
-				"&upg=".$upg."&gender=".$gender."&region=".$region;
+		//$link = "";
 				
-		if($stdno==null) {
-			$link = $link."&isnull=1";
+		if(($stdno==null) || ($lname==null) || ($fname==null) || ($mi==null) || ($lang==null) || ($rdg==null) || ($math==null) || ($sci==null) || ($upg==null)) {
+			$_SESSION['isnull'] = 1;
 			$error = 1;
 		}/*no student number*/
 		
 		if($stdno!=null && !preg_match('/([0-9]{4})\-([0-9]{5})/',$stdno)) {
-			$link = $link."&wrongstdno=1";
+			$_SESSION['wrongstdno'] = 1;
 			$error = 1;
 		}/*wrong student number format*/
 		
 		if($rdg!=null && !is_numeric($rdg)) {
-			$link = $link."&rdgnotnum=1";
+			$_SESSION['rdgnotnum'] = 1;
 			$error = 1;
 		}/*reading grade is not a number*/
 		
 		if($rdg!=null && $rdg<0) {
-			$link = $link."&negativerdg=1";
+			$_SESSION['negativerdg'] = 1;
 			$error = 1;
 		}/*reading grade is negative*/
 		
-		if(($lang==null) || ($rdg==null) || ($math==null) ||
-			($sci==null) || ($upg==null)) {
-			$link = $link."&isnull=1";
-			$error = 1;
-		}/*some grades are null*/
-		
 		if($lang!=null && !is_numeric($lang)) {
-			$link = $link."&langnotnum=1";	
+			$_SESSION['langnotnum'] = 1;
 			$error = 1;
 		}/*language grade is not a number*/
 		
 		if($lang!=null && $lang<0) {
-			$link = $link."&negativelang=1";
+			$_SESSION['negativelang'] = 1;
 			$error = 1;
 		}/*language grade is a negative number*/
 		
 		if($math!=null && !is_numeric($math)) {
-			$link = $link."&mathnotnum=1";
+			$_SESSION['mathnotnum'] = 1;
 			$error = 1;
 		}/*mathematics grade is not a number*/
 		
 		if($math!=null && $math<0) {
-			$link = $link."&negativemath=1";
+			$_SESSION['negativemath'] = 1;
 			$error = 1;
 		}/*mathematics grade is a negative number*/
 		
 		if($sci!=null && !is_numeric($sci)) {
-			$link = $link."&scinotnum=1";
+			$_SESSION['scinotnum'] = 1;
 			$error = 1;
 		}/*science grade is not a number*/
 		
 		if($sci!=null && $sci<0){
-			$link = $link."&negativesci=1";
+			$_SESSION['negativesci'] = 1;
 			$error = 1;
 		}/*science grade is a negative number*/
 		
 		if($upg!=null && !is_numeric($upg)){
-			$link = $link."&upgnotnum=1";
+			$_SESSION['upgnotnum'] = 1;
 			$error = 1;
 		}/*upg is not a number*/
 		
 		if($upg!=null && $upg<0){
-			$link = $link."&negativeupg=1";
+			$_SESSION['negativeupg'] = 1;
 			$error = 1;
 		}/*upg is a negative number*/
 		
-		if($error==1) header($link);//there are errors present
+		if($error==1){
+			$_SESSION['error'] = 1;
+			$_SESSION['addstdno'] = $stdno;
+			$_SESSION['addlname'] = $lname;
+			$_SESSION['addfname'] = $fname;
+			$_SESSION['addmi'] = $mi;
+			if(!($stdtype=="upcatpasser")){
+				$_SESSION['addlang'] = $lang;
+				$_SESSION['addrdg'] = $rdg;
+				$_SESSION['addmath'] = $math;
+				$_SESSION['addsci'] = $sci;
+				$_SESSION['addupg'] = $upg;
+			}
+			$_SESSION['addgender'] = $gender;
+			$_SESSION['addregion'] = $region;
+			header("Location: add.php");//there are errors present
+		}
 		else{
 			$asc = new AddStudentController();
 			$asc->addStudent($stdtype,$stdno,$lname,$fname,$mi,$lang,$rdg,$math,$sci,$upg,
@@ -120,9 +129,9 @@ class AddStudentView
 			   $gender,$region);
 	}
 	
-	function showMessage($flag,$link) {
+	function showMessage($flag) {
 		if($flag==1) header("Location: add.php?addsuccess=1");
-		else header($link."&addnotsuccess=1");
+		else header("Location: add.php?addnotsuccess=1");
 	}//show message if add student is successful or not
 }
 

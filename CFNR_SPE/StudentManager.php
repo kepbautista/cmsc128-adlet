@@ -214,6 +214,8 @@ class StudentManager
 			/*search for all members of the category*/
 			$result = mysql_query("SELECT * FROM waitlist_students WHERE ".$category."='".$value."'");
 			$frequency = mysql_num_rows($result);
+			$result = mysql_query("SELECT * FROM upcat_passers WHERE ".$category."='".$value."'");
+			$frequency = $frequency + mysql_num_rows($result);
 			echo "<tr>";
 			echo "<td id='result'>".$value."</td><td id='result'>".$frequency."</td>";
 			echo "</tr>";
@@ -227,6 +229,8 @@ class StudentManager
 			/*search for all members of the category*/
 			$result = mysql_query("SELECT * FROM waitlist_students WHERE ".$category."='".$value."'");
 			$frequency = mysql_num_rows($result);
+			$result = mysql_query("SELECT * FROM upcat_passers WHERE ".$category."='".$value."'");
+			$frequency = $frequency + mysql_num_rows($result);
 			echo "<tr>";
 			echo "<td id='result'>".$value."</td><td id='result'>".$frequency."</td>";
 			echo "</tr>";

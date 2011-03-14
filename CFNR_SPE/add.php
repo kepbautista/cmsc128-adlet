@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!--
   - File Name: add.php
   - Version Information: Version 1.1
@@ -51,29 +54,29 @@
 					echo "<li><h3>Student is successfully added.</h3></li>";
 				if(isset($_GET['addnotsuccess']))
 					echo "<li><h3>Student is not successfully added. (Student Number already exists.)</h3></li>";
-				if(isset($_GET['isnull']))
+				if(isset($_SESSION['isnull']))
 					echo "<li>No field should be empty.</li>";
-				if(isset($_GET['wrongstdno']))
+				if(isset($_SESSION['wrongstdno']))
 					echo "<li>Wrong student number format. Correct format is 2009-12345.</li>";
-				if(isset($_GET['rdgnotnum']))
+				if(isset($_SESSION['rdgnotnum']))
 					echo "<li>Reading grade should be a number.</li>";
-				if(isset($_GET['negativerdg']))
+				if(isset($_SESSION['negativerdg']))
 					echo "<li>Reading grade should not be negative.</li>";
-				if(isset($_GET['langnotnum']))
+				if(isset($_SESSION['langnotnum']))
 					echo "<li>Language grade should be a number.</li>";
-				if(isset($_GET['negativelang']))
+				if(isset($_SESSION['negativelang']))
 					echo "<li>Language grade should not be negative.</li>";
-				if(isset($_GET['mathnotnum']))
+				if(isset($_SESSION['mathnotnum']))
 					echo "<li>Math grade should be a number.</li>";
-				if(isset($_GET['negativemath']))
+				if(isset($_SESSION['negativemath']))
 					echo "<li>Math grade should not be negative.</li>";
-				if(isset($_GET['scinotnum']))
+				if(isset($_SESSION['scinotnum']))
 					echo "<li>Science grade should be a number.</li>";
-				if(isset($_GET['negativesci']))
+				if(isset($_SESSION['negativesci']))
 					echo "<li>Science grade should not be negative.</li>";
-				if(isset($_GET['upgnotnum']))
+				if(isset($_SESSION['upgnotnum']))
 					echo "<li>UPG should be a number.</li>";
-				if(isset($_GET['negativeupg']))
+				if(isset($_SESSION['negativeupg']))
 					echo "<li>UPG grade should not be negative.</li>";
 				
 				echo "</ul>";
@@ -93,46 +96,46 @@
 			</tr>
 			<tr>
 				<td>Student Number:</td>
-				<td><input type="text" name="stdno" <?php if(isset($_GET['stdno'])) echo "value='".$_GET['stdno']."'"?>/></td>
+				<td><input type="text" name="stdno" <?php if(isset($_SESSION['addstdno'])) echo "value='".$_SESSION['addstdno']."'"?>/></td>
 			</tr>
 			<tr>
 				<td>Last Name:</td>
-				<td><input type="text" name="lname" <?php if(isset($_GET['lname'])) echo "value='".$_GET['lname']."'"?>/></td>
+				<td><input type="text" name="lname" <?php if(isset($_SESSION['addlname'])) echo "value='".$_SESSION['addlname']."'"?>/></td>
 			</tr>
 			<tr>
 				<td>First Name:</td>
-				<td><input type="text" name="fname" <?php if(isset($_GET['fname'])) echo "value='".$_GET['fname']."'"?>/></td>
+				<td><input type="text" name="fname" <?php if(isset($_SESSION['addfname'])) echo "value='".$_SESSION['addfname']."'"?>/></td>
 			</tr>
 			<tr>
 				<td>Middle Initial:</td>
-				<td><input type="text" name="mi" <?php if(isset($_GET['mi'])) echo "value='".$_GET['mi']."'"?>/></td>
+				<td><input type="text" name="mi" <?php if(isset($_SESSION['addmi'])) echo "value='".$_SESSION['addmi']."'"?>/></td>
 			</tr>
 			<tr id="lang">
 				<td>Language:</td>
-				<td><input type="text" name="lang"<?php if(isset($_GET['lang'])) echo "value='".$_GET['lang']."'"?>/></td>
+				<td><input type="text" name="lang"<?php if(isset($_SESSION['addlang'])) echo "value='".$_SESSION['addlang']."'"?>/></td>
 			</tr>
 			<tr id="rdg">
 				<td>Reading:</td>
-				<td><input type="text" name="rdg"<?php if(isset($_GET['rdg'])) echo "value='".$_GET['rdg']."'"?>/></td>
+				<td><input type="text" name="rdg"<?php if(isset($_SESSION['addrdg'])) echo "value='".$_SESSION['addrdg']."'"?>/></td>
 			</tr>
 			<tr id="math">
 				<td>Mathematics:</td>
-				<td><input type="text" name="math"<?php if(isset($_GET['math'])) echo "value='".$_GET['math']."'"?>/></td>
+				<td><input type="text" name="math"<?php if(isset($_SESSION['addmath'])) echo "value='".$_SESSION['addmath']."'"?>/></td>
 			</tr>
 			<tr id="sci">
 				<td>Science:</td>
-				<td><input type="text" name="sci"<?php if(isset($_GET['sci'])) echo "value='".$_GET['sci']."'"?>/></td>
+				<td><input type="text" name="sci"<?php if(isset($_SESSION['addsci'])) echo "value='".$_SESSION['addsci']."'"?>/></td>
 			</tr>
 			<tr id="upg">
 				<td>UPG:</td>
-				<td><input type="text" name="upg"<?php if(isset($_GET['upg'])) echo "value='".$_GET['upg']."'"?>/></td>
+				<td><input type="text" name="upg"<?php if(isset($_SESSION['addupg'])) echo "value='".$_SESSION['addupg']."'"?>/></td>
 			</tr>
 			<tr>
 				<td>Gender:</td>
 				<td>
 				<select name="gender">
-					<option value="F" <?php if((isset($_GET['gender'])) && ($_GET['gender']=='F')) echo "selected='selected'";?>>Female</option>
-					<option value="M" <?php if((isset($_GET['gender'])) && ($_GET['region']=='M')) echo "selected='selected'";?>>Male</option>
+					<option value="F" <?php if((isset($_SESSION['addgender'])) && ($_SESSION['addgender']=='F')) echo "selected='selected'";?>>Female</option>
+					<option value="M" <?php if((isset($_SESSION['addgender'])) && ($_SESSION['addgender']=='M')) echo "selected='selected'";?>>Male</option>
 				</select>
 				</td>
 			</tr>
@@ -140,23 +143,34 @@
 				<td>Region:</td>
 				<td>
 				<select type="text" name="region" style="align:center">
-					<option value="NCR" <?php if((isset($_GET['region'])) && ($_GET['region']=='NCR')) echo "selected='selected'";?>>NCR</option>
-					<option value="1" <?php if((isset($_GET['region'])) && ($_GET['region']=='1')) echo "selected='selected'";?>>1</option>
-					<option value="CAR" <?php if((isset($_GET['region'])) && ($_GET['region']=='CAR')) echo "selected='selected'";?>>CAR</option>
-					<option value="2" <?php if((isset($_GET['region'])) && ($_GET['region']=='2')) echo "selected='selected'";?>>2</option>
-					<option value="3" <?php if((isset($_GET['region'])) && ($_GET['region']=='3')) echo "selected='selected'";?>>3</option>
-					<option value="4-A" <?php if((isset($_GET['region'])) && ($_GET['region']=='4-A')) echo "selected='selected'";?>>4-A</option>
-					<option value="4-B" <?php if((isset($_GET['region'])) && ($_GET['region']=='4-B')) echo "selected='selected'";?>>4-B</option>
-					<option value="5" <?php if((isset($_GET['region'])) && ($_GET['region']=='5')) echo "selected='selected'";?>>5</option>
-					<option value="6" <?php if((isset($_GET['region'])) && ($_GET['region']=='6')) echo "selected='selected'";?>>6</option>
-					<option value="7" <?php if((isset($_GET['region'])) && ($_GET['region']=='7')) echo "selected='selected'";?>>7</option>
-					<option value="8" <?php if((isset($_GET['region'])) && ($_GET['region']=='8')) echo "selected='selected'";?>>8</option>
-					<option value="9" <?php if((isset($_GET['region'])) && ($_GET['region']=='9')) echo "selected='selected'";?>>9</option>
-					<option value="10" <?php if((isset($_GET['region'])) && ($_GET['region']=='10')) echo "selected='selected'";?>>10</option>
-					<option value="11" <?php if((isset($_GET['region'])) && ($_GET['region']=='11')) echo "selected='selected'";?>>11</option>
-					<option value="12" <?php if((isset($_GET['region'])) && ($_GET['region']=='12')) echo "selected='selected'";?>>12</option>
-					<option value="CARAGA" <?php if((isset($_GET['region'])) && ($_GET['region']=='CARAGA')) echo "selected='selected'";?>>CARAGA</option>
-					<option value="ARMM" <?php if((isset($_GET['region'])) && ($_GET['region']=='ARMM')) echo "selected='selected'";?>>ARMM</option>
+				<?php
+					if((isset($_SESSION['addregion'])) && ($_SESSION['addregion']=='NCR')){
+						echo "<option value='NCR' selected='selected'>NCR</option>";
+					}else echo "<option value='NCR'>NCR</option>";
+					if((isset($_SESSION['addregion'])) && ($_SESSION['addregion']=='CAR')){
+						echo "<option value='CAR' selected='selected'>CAR</option>";
+					}else echo "<option value='CAR'>CAR</option>";
+					for($i=1;$i<13;$i++){
+						if($i==4){
+							if((isset($_SESSION['addregion'])) && ($_SESSION['addregion']=='4-A')){
+								echo "<option value='4-A' selected='selected'>4-A</option>";
+							}else echo "<option value='4-A'>4-A</option>";
+							if((isset($_SESSION['addregion'])) && ($_SESSION['addregion']=='4-B')){
+								echo "<option value='4-B' selected='selected'>4-B</option>";
+							}else echo "<option value='4-B'>4-B</option>";
+						}else{
+							if((isset($_SESSION['addregion'])) && ($_SESSION['addregion']==$i)){
+								echo "<option value='$i' selected='selected'>$i</option>";
+							}else echo "<option value='$i'>$i</option>";
+						}
+					}
+					if((isset($_SESSION['addregion'])) && ($_SESSION['addregion']=='CARAGA')){
+						echo "<option value='CARAGA' selected='selected'>CARAGA</option>";
+					}else echo "<option value='CARAGA'>CARAGA</option>";
+					if((isset($_SESSION['addregion'])) && ($_SESSION['addregion']=='ARMM')){
+						echo "<option value='ARMM' selected='selected'>ARMM</option>";
+					}else echo "<option value='ARMM'>ARMM</option>";
+				?>
 				</select>
 				</td>
 			</tr>
@@ -168,3 +182,30 @@
 	</form>
 </body>
 </html>
+<?php
+	unset($_SESSION['error']);
+	unset($_SESSION['addstdno']);
+	unset($_SESSION['addlname']);
+	unset($_SESSION['addfname']);
+	unset($_SESSION['addmi']);
+	if(isset($_SESSION['addlang'])) unset($_SESSION['addlang']);
+	if(isset($_SESSION['addrdg'])) unset($_SESSION['addrdg']);
+	if(isset($_SESSION['addmath'])) unset($_SESSION['addmath']);
+	if(isset($_SESSION['addsci'])) unset($_SESSION['addsci']);
+	if(isset($_SESSION['addupg'])) unset($_SESSION['addupg']);
+	unset($_SESSION['addgender']);
+	unset($_SESSION['addregion']);
+	
+	if(isset($_SESSION['isnull'])) unset($_SESSION['isnull']);
+	if(isset($_SESSION['wrongstdno'])) unset($_SESSION['wrongstdno']);
+	if(isset($_SESSION['rdgnotnum'])) unset($_SESSION['rdgnotnum']);
+	if(isset($_SESSION['negativerdg'])) unset($_SESSION['negativerdg']);
+	if(isset($_SESSION['langnotnum'])) unset($_SESSION['langnotnum']);
+	if(isset($_SESSION['negativelang'])) unset($_SESSION['negativelang']);
+	if(isset($_SESSION['mathnotnum'])) unset($_SESSION['mathnotnum']);
+	if(isset($_SESSION['negativemath'])) unset($_SESSION['negativemath']);
+	if(isset($_SESSION['scinotnum'])) unset($_SESSION['scinotnum']);
+	if(isset($_SESSION['negativesci'])) unset($_SESSION['negativesci']);
+	if(isset($_SESSION['upgnotnum'])) unset($_SESSION['upgnotnum']);
+	if(isset($_SESSION['negativeupg'])) unset($_SESSION['negativeupg']);
+?>
