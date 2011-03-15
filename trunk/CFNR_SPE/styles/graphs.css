@@ -1,3 +1,12 @@
+h1{
+text-align: center
+}
+
+h2{
+text-align: left;
+background-color: #ffd700;
+}
+
 #tabs{
 	padding:0;
 	margin:0;
@@ -16,10 +25,15 @@
 	border: 1px solid;
 }/*div where the tabs sit*/
 
+p{
+text-align: left
+}
+			
 th{
-	text-align: left;
+text-align: center;
+background-color: #dc403c;
 }
 
-h1{
-	text-align: center;
-}
+li a {
+	padding: 0 1em;
+}/*anchor elements inside a list*/

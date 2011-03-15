@@ -62,7 +62,7 @@ class StudentManager
 		
 			/*insert student to database*/
 			if($stdtype=="waitlist_students") $sql = "INSERT INTO waitlist_students VALUES ('".$stdno."', '".$lname."', 
-						'".$fname."', '".$mi."', '".$lang."', '".$rdg."', '".$math."',
+						'".$fname."', '".$mi."', '".substr($stdno,0,4)."', '".$lang."', '".$rdg."', '".$math."',
 						'".$sci."', '".$upg."', '".$gender."', '".$region."','NULL')";
 			else if($stdtype=="upcat_passers") $sql = "INSERT INTO upcat_passers VALUES ('".$stdno."', '".$lname."', 
 						'".$fname."', '".$mi."', '".$gender."', '".$region."','NULL')";
@@ -147,20 +147,20 @@ class StudentManager
 					  <td id='result'><input type='button' name='edit' id='viewgrade".$row['StudentNumber']."' value='viewgrade' title='".$row['StudentNumber']."'/></td>";
 				echo "</tr>";
 				echo "<script>$('#edit".$row['StudentNumber']."').click(function(){
-									$.post('modify.php', {stdno: $('#edit".$row['StudentNumber']."').attr('title')});
-									location.href = 'edit.php';
+									$.post('../modify.php', {stdno: $('#edit".$row['StudentNumber']."').attr('title')});
+									location.href = '../EditStudent/';
 								});
 							  $('#delete".$row['StudentNumber']."').click(function(){
-									$.post('modify.php', {stdno: $('#delete".$row['StudentNumber']."').attr('title')});
-									location.href = 'DeleteStudentView.php';
+									$.post('../modify.php', {stdno: $('#delete".$row['StudentNumber']."').attr('title')});
+									location.href = '../DeleteStudent/DeleteStudentView.php';
 								});
 								$('#addgrade".$row['StudentNumber']."').click(function(){
-									$.post('modify.php', {stdno: $('#addgrade".$row['StudentNumber']."').attr('title')});
-									location.href = 'addgrade.php';
+									$.post('../modify.php', {stdno: $('#addgrade".$row['StudentNumber']."').attr('title')});
+									location.href = '../AddGrade/';
 								})
 								$('#viewgrade".$row['StudentNumber']."').click(function(){
-									$.post('modify.php', {stdno: $('#viewgrade".$row['StudentNumber']."').attr('title')});
-									location.href = 'displaygrade.php';
+									$.post('../modify.php', {stdno: $('#viewgrade".$row['StudentNumber']."').attr('title')});
+									location.href = '../DisplayGrade/';
 								});
 					  </script>";
 			}while($row = mysql_fetch_array($result));//print each row
@@ -191,7 +191,7 @@ class StudentManager
 		
 		$connect->closeconnection($con);
 		
-		if($result>0) return 1;
+		if($result==true) return 1;
 		else return 0;
 	}
 	

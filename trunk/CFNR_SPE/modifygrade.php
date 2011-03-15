@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	if((isset($_POST['EditGrade'])) || isset($_POST['DeleteGrade'])) {
 		$stdno = $_POST['StudentNumber'];
 		$cnum = $_POST['CourseNumber'];
@@ -11,11 +12,19 @@
 		
 		$link = "stdno=".$stdno."&cnum=".$cnum."&sem=".$sem."&year=".$year."&ctitle=".$ctitle."&grade=".$grade."&units=".$units;
 		
+		$_SESSION['stdno'] = $stdno;
+		$_SESSION['cnum'] = $cnum;
+		$_SESSION['ctitle'] = $ctitle;
+		$_SESSION['grade'] = $grade;
+		$_SESSION['units'] = $units;
+		$_SESSION['sem'] = $sem;
+		$_SESSION['year'] = $year;
+		
 		if(isset($_POST['EditGrade']))
-			header("Location: editgrade.php?".$link);//the user pressed EditGrade
+			header("Location: EditGrade/");//the user pressed EditGrade
 		else
-			header("Location: DeleteGradeView.php?".$link);//the user pressed DeleteGrade
+			header("Location: DeleteGrade/DeleteGradeView.php?".$link);//the user pressed DeleteGrade
 	}
 	else
-		header("Location: search.php");
+		header("Location: SearchStudent/");
 ?>
