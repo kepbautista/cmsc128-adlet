@@ -108,7 +108,10 @@ class GradeManager {
 		
 		/*Display Student's Grades*/
 		while($row = mysql_fetch_array($result)){
-			echo "<h3 style='text-align:center;'>".$row['Semester']." Term, ".$row['SchoolYear']."</h3>";
+			echo "<h3 style='text-align:center;'>".$row['Semester'];
+			if($row['Semester']=="1st" || $row['Semester']=="2nd") echo " Semester, ";
+			else echo ", ";
+			echo $row['SchoolYear']."</h3>";
 			echo "<table id='count_results'><th id='result'>Course Number</th>
 			      <th id='result'>Course Title</th><th id='result'>Grade</th>
 				  <th id='result'>Units</th><th id='result' colspan='2'>Modify</th>";
@@ -118,10 +121,9 @@ class GradeManager {
 			
 			$sql = "SELECT * FROM `".$stdno."` WHERE Semester='$semester' and SchoolYear='$year'";
 			$view = mysql_query($sql,$con);
-				
-			echo "<form name='info' method='post' action='modifygrade.php'>";
+			
 			while($data = mysql_fetch_array($view)){
-				echo "<form method='post' action='modifygrade.php'>";
+				echo "<form method='post' action='../modifygrade.php'>";
 				echo "<tr><td id='result'>".$data['CourseNumber']."</td>
 				      <td id='result'>".$data['CourseTitle']."</td>
 					  <td id='result'>".$data['Grade']."</td>
@@ -175,14 +177,18 @@ class GradeManager {
 		
 		/*Compute Running GWA*/
 		$gwa = $gm->ComputeGWA($stdno,$con,"running",$year);
-		mysql_query("UPDATE waitlist_students SET GWA='$gwa' WHERE StudentNumber LIKE '$stdno'");
+		$result = mysql_query("SELECT TableName FROM students_list where StudentNumber='$stdno'");
+		$row = mysql_fetch_array($result);
+		$table = $row['TableName'];
+		mysql_query("UPDATE `".$table."` SET GWA='$gwa' WHERE StudentNumber LIKE '$stdno'");
 		
-		$check = mysql_query("SELECT * FROM `".$stdno."` WHERE Semester LIKE '$sem' AND SchoolYear LIKE '$year'");
-		$num = mysql_num_rows($check);
+		$sql = "SELECT * FROM `".$stdno."` WHERE Semester like '$sem' AND SchoolYear like '$year'";
+		$check = mysql_query($sql,$con);
 		
-		/*Semester doesn't contain any subject*/
-		if($num==0)
-			mysql_query("DELETE FROM `".$table."` WHERE Semester LIKE '$sem' AND SchoolYear LIKE '$year'");		
+		$table = $stdno."/gwa";
+		if(mysql_num_rows($check)==0)
+			mysql_query("DELETE FROM `".$table."` WHERE Semester like '$sem' AND SchoolYear like '$year'");
+			//Semester is not existing anymore.
 		
 		$connect->closeconnection($con);
 		
@@ -232,7 +238,11 @@ class GradeManager {
 		
 		/*Compute Running GWA*/
 		$gwa = $gm->ComputeGWA($stdno,$con,"running",$year);
-		mysql_query("UPDATE waitlist_students SET GWA='$gwa' WHERE StudentNumber LIKE '$stdno'");
+		$result = mysql_query("SELECT TableName FROM students_list where StudentNumber='$stdno'");
+		$row = mysql_fetch_array($result);
+		$table = $row['TableName'];
+		echo $table;
+		mysql_query("UPDATE `".$table."` SET GWA='$gwa' WHERE StudentNumber LIKE '$stdno'");
 		
 		$connect->closeconnection($con);
 		
