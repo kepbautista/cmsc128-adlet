@@ -9,7 +9,7 @@ class BarGraphView {
 	
 	function showMessage($flag){
 		if($flag==1) header("Location: BarGraph.php");
-		else if($flag==0) header("Location: graphs.php?barnotsuccess=1");
+		else if($flag==0) header("Location: index.php?barnotsuccess=1");
 	}
 	
 }

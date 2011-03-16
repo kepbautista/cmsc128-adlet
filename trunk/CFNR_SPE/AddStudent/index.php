@@ -1,6 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['username'])) header("Location: ../");
+
+$isnull = "<p>Required field</p>";
+$invalid = "<p>Should be a non-negative number</p>";
 ?>
 <!--
   - File Name: add.php
@@ -11,36 +14,37 @@ if(!isset($_SESSION['username'])) header("Location: ../");
 <html>
 	<head>
 		<title>CFNR Student Performance Evaluator</title>
-		<link rel="stylesheet" type="text/css" href="../styles/styles.css" />
-		<script type='text/javascript' src='jquery-1.4.1.min.js'></script>
+		<link rel="stylesheet" type="text/css" href="../styles/view.css" />
+		<script type='text/javascript' src='../jquery-1.4.1.min.js'></script>
 		<script type='text/javascript'>
 		$(document).ready(function(){
 			$('#waitlisted').click(function(){
-				$("#lang").show();
-				$("#rdg").show();
-				$("#math").show();
-				$("#sci").show();
-				$("#upg").show();
+				$('#lang').show();
+				$('#rdg').show();
+				$('#math').show();
+				$('#sci').show();
+				$('#upg').show();
 			});
 			
 			$('#upcatpasser').click(function(){
-				$("#lang").hide();
-				$("#rdg").hide();
-				$("#math").hide();
-				$("#sci").hide();
-				$("#upg").hide();
+				$('#lang').hide();
+				$('#rdg').hide();
+				$('#math').hide();
+				$('#sci').hide();
+				$('#upg').hide();
 			});
 		});//script for student type radio buttons
 		</script>
 	</head>
 <body id="addStudent">
-<h1>CFNR Student Performance Evaluator</h1>
-	<ul id="tabs">
-		<li id="tab1"><a href="../AddStudent/">Add Student</a></li>
-		<li id="tab2"><a href="../SearchStudent/">Search Student</a></li>
-		<li id="tab3"><a href="../CountStudent/">Count Student</a></li>
-		<li id="tab4"><a href="../Graphs/Graphs.php">View Statistics</a></li>
-	</ul>
+	<div id='logo'><img src='../images/logo.png'/></div>
+	
+	<div id='options'>
+	<a href="../AddStudent/"><img src='../images/addstudent2.gif'/></a>
+	<a href="../SearchStudent/"><img src='../images/searchstudent2.jpg'/></a>
+	<a href="../CountStudent/"><img src='../images/countstudent2.jpg'></a>
+	<a href="../Graphs/"><img src='../images/viewstat.jpg'></a>
+	</div>
 	
 	<!--Form for User Inputs-->
 	<form name="info" method="post" action="AddStudentView.php">
@@ -49,88 +53,115 @@ if(!isset($_SESSION['username'])) header("Location: ../");
 		
 		<?php
 			if(isset($_GET['added']))
-				echo "<h3>Student added Successfully.</h3>";//student was added
+				echo "<h4>Student added Successfully!</h4>";//student was added
 			else{
 				echo "<ul>";
 				if(isset($_GET['addsuccess']))
-					echo "<li><h3>Student is successfully added.</h3></li>";
+					echo "<li><h4>Student is successfully added!</h4></li>";
 				if(isset($_GET['addnotsuccess']))
-					echo "<li><h3>Student is not successfully added. (Student Number already exists.)</h3></li>";
-				if(isset($_SESSION['isnull']))
-					echo "<li>No field should be empty.</li>";
-				if(isset($_SESSION['wrongstdno']))
-					echo "<li>Wrong student number format. Correct format is 2009-12345.</li>";
-				if(isset($_SESSION['rdgnotnum']))
-					echo "<li>Reading grade should be a number.</li>";
-				if(isset($_SESSION['negativerdg']))
-					echo "<li>Reading grade should not be negative.</li>";
-				if(isset($_SESSION['langnotnum']))
-					echo "<li>Language grade should be a number.</li>";
-				if(isset($_SESSION['negativelang']))
-					echo "<li>Language grade should not be negative.</li>";
-				if(isset($_SESSION['mathnotnum']))
-					echo "<li>Math grade should be a number.</li>";
-				if(isset($_SESSION['negativemath']))
-					echo "<li>Math grade should not be negative.</li>";
-				if(isset($_SESSION['scinotnum']))
-					echo "<li>Science grade should be a number.</li>";
-				if(isset($_SESSION['negativesci']))
-					echo "<li>Science grade should not be negative.</li>";
-				if(isset($_SESSION['upgnotnum']))
-					echo "<li>UPG should be a number.</li>";
-				if(isset($_SESSION['negativeupg']))
-					echo "<li>UPG grade should not be negative.</li>";
-				
+					echo "<li><h4>Student is not successfully added. (Student Number already exists.)</h4></li>";
 				echo "</ul>";
 			}//there are input errors
 		?>
 		
 		<table>
 			<tr>
-				<th colspan='2'>Enter Information:</th>
+				<th colspan='2' style="text-align: left;background-color: white;">Enter Information:</th>
 			</tr>
 			<tr>
 				<td>Student Type:</td>
 				<td>
-				<input type="radio" name="studentType" id="waitlisted" value="waitlisted" checked="true"/><label for="waitlisted">Waitlisted</label>
-				<input type="radio" name="studentType" id="upcatpasser" value="upcatpasser"/><label for="upcatpasser">UPCAT Passer</label>
+					<input type="radio" name="studentType" id="waitlisted" value="waitlisted" checked="true"/><label for="waitlisted">Waitlisted</label>
+					<input type="radio" name="studentType" id="upcatpasser" value="upcatpasser"/><label for="upcatpasser">UPCAT Passer</label>
 				</td>
 			</tr>
 			<tr>
 				<td>Student Number:</td>
 				<td><input type="text" name="stdno" <?php if(isset($_SESSION['addstdno'])) echo "value='".$_SESSION['addstdno']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['stdnoisnull']))	echo $isnull;
+					if(isset($_SESSION['wrongstdno'])) echo "<p>Correct form is yyyy-nnnnn (ex. 2010-12345)</p>";
+				?>
+				</td>
 			</tr>
 			<tr>
 				<td>Last Name:</td>
 				<td><input type="text" name="lname" <?php if(isset($_SESSION['addlname'])) echo "value='".$_SESSION['addlname']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['lnameisnull']))	echo $isnull;
+				?>
+				</td>
 			</tr>
 			<tr>
 				<td>First Name:</td>
 				<td><input type="text" name="fname" <?php if(isset($_SESSION['addfname'])) echo "value='".$_SESSION['addfname']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['fnameisnull']))	echo $isnull;
+				?>
+				</td>
 			</tr>
 			<tr>
 				<td>Middle Initial:</td>
 				<td><input type="text" name="mi" <?php if(isset($_SESSION['addmi'])) echo "value='".$_SESSION['addmi']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['miisnull']))	echo $isnull;
+					if(isset($_SESSION['longmi']))	echo "Up to 5 characters only";
+				?>
+				</td>
 			</tr>
 			<tr id="lang">
 				<td>Language:</td>
 				<td><input type="text" name="lang"<?php if(isset($_SESSION['addlang'])) echo "value='".$_SESSION['addlang']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['langisnull']))	echo $isnull;
+					if(isset($_SESSION['invalidlang']))	echo $invalid;
+				?>
+				</td>
 			</tr>
 			<tr id="rdg">
 				<td>Reading:</td>
 				<td><input type="text" name="rdg"<?php if(isset($_SESSION['addrdg'])) echo "value='".$_SESSION['addrdg']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['rdgisnull']))	echo $isnull;
+					if(isset($_SESSION['invalidrdg']))	echo $invalid;
+				?>
+				</td>
 			</tr>
 			<tr id="math">
 				<td>Mathematics:</td>
 				<td><input type="text" name="math"<?php if(isset($_SESSION['addmath'])) echo "value='".$_SESSION['addmath']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['mathisnull']))	echo $isnull;
+					if(isset($_SESSION['invalidmath']))	echo $invalid;
+				?>
+				</td>
 			</tr>
 			<tr id="sci">
 				<td>Science:</td>
 				<td><input type="text" name="sci"<?php if(isset($_SESSION['addsci'])) echo "value='".$_SESSION['addsci']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['sciisnull']))	echo $isnull;
+					if(isset($_SESSION['invalidsci']))	echo $invalid;
+				?>
+				</td>
 			</tr>
 			<tr id="upg">
 				<td>UPG:</td>
 				<td><input type="text" name="upg"<?php if(isset($_SESSION['addupg'])) echo "value='".$_SESSION['addupg']."'"?>/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['upgisnull']))	echo $isnull;
+					if(isset($_SESSION['invalidupg']))	echo $invalid;
+				?>
+				</td>
 			</tr>
 			<tr>
 				<td>Gender:</td>
@@ -140,6 +171,7 @@ if(!isset($_SESSION['username'])) header("Location: ../");
 					<option value="M" <?php if((isset($_SESSION['addgender'])) && ($_SESSION['addgender']=='M')) echo "selected='selected'";?>>Male</option>
 				</select>
 				</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Region:</td>
@@ -175,19 +207,22 @@ if(!isset($_SESSION['username'])) header("Location: ../");
 				?>
 				</select>
 				</td>
+				<td></td>
 			</tr>
 		</table>
 		<input type="submit" name="submit" value="Submit"/>
 		<input type="reset" name="clear" value="Clear"/>
 		<br/>
+		
+		<a href="../logout.php">Logout</a>
 		</div>
 	</form>
 	
-	<a href="../logout.php">Logout</a>
 </body>
 </html>
 <?php
 	unset($_SESSION['error']);
+	unset($_SESSION['addstdtype']);
 	unset($_SESSION['addstdno']);
 	unset($_SESSION['addlname']);
 	unset($_SESSION['addfname']);
@@ -200,16 +235,20 @@ if(!isset($_SESSION['username'])) header("Location: ../");
 	unset($_SESSION['addgender']);
 	unset($_SESSION['addregion']);
 	
-	if(isset($_SESSION['isnull'])) unset($_SESSION['isnull']);
+	if(isset($_SESSION['stdnoisnull'])) unset($_SESSION['stdnoisnull']);
+	if(isset($_SESSION['lnameisnull'])) unset($_SESSION['lnameisnull']);
+	if(isset($_SESSION['fnameisnull'])) unset($_SESSION['fnameisnull']);
+	if(isset($_SESSION['miisnull'])) unset($_SESSION['miisnull']);
+	if(isset($_SESSION['langisnull'])) unset($_SESSION['langisnull']);
+	if(isset($_SESSION['rdgisnull'])) unset($_SESSION['rdgisnull']);
+	if(isset($_SESSION['mathisnull'])) unset($_SESSION['mathisnull']);
+	if(isset($_SESSION['sciisnull'])) unset($_SESSION['sciisnull']);
+	if(isset($_SESSION['upgisnull'])) unset($_SESSION['upgisnull']);
+	if(isset($_SESSION['longmi'])) unset($_SESSION['longmi']);
 	if(isset($_SESSION['wrongstdno'])) unset($_SESSION['wrongstdno']);
-	if(isset($_SESSION['rdgnotnum'])) unset($_SESSION['rdgnotnum']);
-	if(isset($_SESSION['negativerdg'])) unset($_SESSION['negativerdg']);
-	if(isset($_SESSION['langnotnum'])) unset($_SESSION['langnotnum']);
-	if(isset($_SESSION['negativelang'])) unset($_SESSION['negativelang']);
-	if(isset($_SESSION['mathnotnum'])) unset($_SESSION['mathnotnum']);
-	if(isset($_SESSION['negativemath'])) unset($_SESSION['negativemath']);
-	if(isset($_SESSION['scinotnum'])) unset($_SESSION['scinotnum']);
-	if(isset($_SESSION['negativesci'])) unset($_SESSION['negativesci']);
-	if(isset($_SESSION['upgnotnum'])) unset($_SESSION['upgnotnum']);
-	if(isset($_SESSION['negativeupg'])) unset($_SESSION['negativeupg']);
+	if(isset($_SESSION['invalidrdg'])) unset($_SESSION['invalidrdg']);
+	if(isset($_SESSION['invalidlang'])) unset($_SESSION['invalidlang']);
+	if(isset($_SESSION['invalidmath'])) unset($_SESSION['invalidmath']);
+	if(isset($_SESSION['invalidsci'])) unset($_SESSION['invalidsci']);
+	if(isset($_SESSION['invalidupg'])) unset($_SESSION['invalidupg']);
 ?>

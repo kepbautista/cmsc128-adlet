@@ -64,7 +64,6 @@ class GraphManager {
 		return $result;
 	}
 	
-	/**INSUFFICIENT INFORMATION FOR LINE GRAPH**/
 	function lineChart($stdno1,$stdno2){
 		$result = array();//initialize result
 		

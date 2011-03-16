@@ -24,12 +24,18 @@ include "../dbconnection.php";
 ?>
  
 <html>
+<head>
+	<title>CFNR Student Performance Evaluator</title>
+	<link rel="stylesheet" type="text/css" href="../styles/view.css" />
+</head>
 
 <body>
-	<div id="addgradediv">
+	<div id='logo'><img src='../images/logo.png'/></div>
+
+	<div id="content" style='top:0'>
 	<!-- Form for determining number of subjects to be entered-->
 	<form method="post" action="PreAddGradeView.php">
-		<h3>ENTER GRADES FOR <?php echo $row['FirstName']." ".$row['LastName']; ?> (<?php echo $row['StudentNumber']; ?>)</h3>
+		<h2>ENTER GRADES FOR <?php echo $row['FirstName']." ".$row['LastName']; ?> (<?php echo $row['StudentNumber']; ?>)</h2>
 		<table>
 			<tr><td>Semester:</td>
 				<td>

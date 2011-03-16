@@ -50,15 +50,22 @@ include "../dbconnection.php";
 		$gender = $row['Gender'];
 		$region = $row['Region'];
 	}
+	
+	$isnull = "<p>Required field</p>";
+	$invalid = "<p>Should be a non-negative number</p>";
 ?>
 
 <html>
 <head>
-	<title>Edit Student</title>
+	<title><?php echo "Edit information for student number ".$_SESSION['modifyStdno'];?></title>
+	<link rel="stylesheet" type="text/css" href="../styles/view.css" />
 </head>
 
 <body>
-	<h1>Student Editor</h1>
+	<div id='logo'><img src='../images/logo.png'/></div>
+
+	<div id='content' style='top:0'>
+	<h2>Student Editor</h2>
 	<?php
 		echo "Edit information for student number ".$_SESSION['modifyStdno'];
 	?>
@@ -69,36 +76,73 @@ include "../dbconnection.php";
 			<tr>
 				<td>Last Name:</td>
 				<td><input type="text" name="lname" value="<?php echo $lname; ?>"/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['lnameisnull'])) echo $isnull;
+				?>
+				</td>
 			</tr>
 			<tr>
 				<td>First Name:</td>
 				<td><input type="text" name="fname" value="<?php echo $fname; ?>"/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['fnameisnull'])) echo $isnull;
+				?>
+				</td>
 			</tr>
 			<tr>
 				<td>Middle Initial:</td>
 				<td><input type="text" name="mi" value="<?php echo $mi; ?>"/></td>
+				<td>
+				<?php
+					if(isset($_SESSION['miisnull'])) echo $isnull;
+					if(isset($_SESSION['longmi'])) echo "Up to 5 characters only";
+				?>
+				</td>
 			</tr>
 			<?php
-			if($table=="waitlist_students") echo "<tr>
+			if($table=="waitlist_students"){ echo "<tr>
 				<td>Language:</td>
 				<td><input type='text' name='lang' value='".$lang."'/></td>
+				<td>";
+					if(isset($_SESSION['langisnull'])) echo $isnull;
+					if(isset($_SESSION['invalidlang'])) echo $invalid;
+				echo "</td>
 			</tr>
 			<tr>
 				<td>Reading:</td>
 				<td><input type='text' name='rdg' value='".$rdg."'/></td>
+				<td>";
+					if(isset($_SESSION['rdgisnull'])) echo $isnull;
+					if(isset($_SESSION['invalidrdg'])) echo $invalid;
+				echo "</td>
 			</tr>
 			<tr>
 				<td>Mathematics:</td>
 				<td><input type='text' name='math' value='".$math."'/></td>
+				<td>";
+					if(isset($_SESSION['mathisnull'])) echo $isnull;
+					if(isset($_SESSION['invalidmath'])) echo $invalid;
+				echo "</td>
 			</tr>
 			<tr>
 				<td>Science:</td>
 				<td><input type='text' name='sci' value='".$sci."'/></td>
+				<td>";
+					if(isset($_SESSION['sciisnull'])) echo $isnull;
+					if(isset($_SESSION['invalidsci'])) echo $invalid;
+				echo "</td>
 			</tr>
 			<tr>
 				<td>UPG:</td>
 				<td><input type='text' name='upg' value='".$upg."'/></td>
+				<td>";
+					if(isset($_SESSION['upgisnull'])) echo $isnull;
+					if(isset($_SESSION['invalidupg'])) echo $invalid;
+				echo "</td>
 			</tr>";
+			}
 			?>
 			<tr>
 				<td>Gender:</td>
@@ -153,34 +197,11 @@ include "../dbconnection.php";
 			else{
 				echo "<ul>";
 				if(isset($_GET['editnotsuccess']))
-					echo "<li><h3>Student is not successfully updated.".$_GET['editnotsuccess']."</h3></li>";
-				if(isset($_SESSION['isnull']))
-					echo "<li>No field should be empty.</li>";
-				if(isset($_SESSION['rdgnotnum']))
-					echo "<li>Reading grade should be a number.</li>";
-				if(isset($_SESSION['negativerdg']))
-					echo "<li>Reading grade should not be negative.</li>";
-				if(isset($_SESSION['langnotnum']))
-					echo "<li>Language grade should be a number.</li>";
-				if(isset($_SESSION['negativelang']))
-					echo "<li>Language grade should not be negative.</li>";
-				if(isset($_SESSION['mathnotnum']))
-					echo "<li>Math grade should be a number.</li>";
-				if(isset($_SESSION['negativemath']))
-					echo "<li>Math grade should not be negative.</li>";
-				if(isset($_SESSION['scinotnum']))
-					echo "<li>Science grade should be a number.</li>";
-				if(isset($_SESSION['negativesci']))
-					echo "<li>Science grade should not be negative.</li>";
-				if(isset($_SESSION['upgnotnum']))
-					echo "<li>UPG should be a number.</li>";
-				if(isset($_SESSION['negativeupg']))
-					echo "<li>UPG grade should not be negative.</li>";
-				
+					echo "<li><h3>Student is not successfully updated.</h3></li>";
 				echo "</ul>";
 			}//there are input errors
 		?>
-	
+	</div>
 </body>
 </html>
 
@@ -199,15 +220,18 @@ include "../dbconnection.php";
 	unset($_SESSION['editgender']);
 	unset($_SESSION['editregion']);
 	
-	if(isset($_SESSION['isnull'])) unset($_SESSION['isnull']);
-	if(isset($_SESSION['rdgnotnum'])) unset($_SESSION['rdgnotnum']);
-	if(isset($_SESSION['negativerdg'])) unset($_SESSION['negativerdg']);
-	if(isset($_SESSION['langnotnum'])) unset($_SESSION['langnotnum']);
-	if(isset($_SESSION['negativelang'])) unset($_SESSION['negativelang']);
-	if(isset($_SESSION['mathnotnum'])) unset($_SESSION['mathnotnum']);
-	if(isset($_SESSION['negativemath'])) unset($_SESSION['negativemath']);
-	if(isset($_SESSION['scinotnum'])) unset($_SESSION['scinotnum']);
-	if(isset($_SESSION['negativesci'])) unset($_SESSION['negativesci']);
-	if(isset($_SESSION['upgnotnum'])) unset($_SESSION['upgnotnum']);
-	if(isset($_SESSION['negativeupg'])) unset($_SESSION['negativeupg']);
+	if(isset($_SESSION['lnameisnull'])) unset($_SESSION['lnameisnull']);
+	if(isset($_SESSION['fnameisnull'])) unset($_SESSION['fnameisnull']);
+	if(isset($_SESSION['miisnull'])) unset($_SESSION['miisnull']);
+	if(isset($_SESSION['langisnull'])) unset($_SESSION['langisnull']);
+	if(isset($_SESSION['rdgisnull'])) unset($_SESSION['rdgisnull']);
+	if(isset($_SESSION['mathisnull'])) unset($_SESSION['mathisnull']);
+	if(isset($_SESSION['sciisnull'])) unset($_SESSION['sciisnull']);
+	if(isset($_SESSION['upgisnull'])) unset($_SESSION['upgisnull']);
+	if(isset($_SESSION['longmi'])) unset($_SESSION['longmi']);
+	if(isset($_SESSION['invalidrdg'])) unset($_SESSION['invalidrdg']);
+	if(isset($_SESSION['invalidlang'])) unset($_SESSION['invalidlang']);
+	if(isset($_SESSION['invalidmath'])) unset($_SESSION['invalidmath']);
+	if(isset($_SESSION['invalidsci'])) unset($_SESSION['invalidsci']);
+	if(isset($_SESSION['invalidupg'])) unset($_SESSION['invalidupg']);
 ?>

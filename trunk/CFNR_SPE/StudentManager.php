@@ -61,12 +61,8 @@ class StudentManager
 			mysql_query($sql,$con);
 		
 			/*insert student to database*/
-			if($stdtype=="waitlist_students") $sql = "INSERT INTO waitlist_students VALUES ('".$stdno."', '".$lname."', 
-						'".$fname."', '".$mi."', '".substr($stdno,0,4)."', '".$lang."', '".$rdg."', '".$math."',
-						'".$sci."', '".$upg."', '".$gender."', '".$region."','NULL')";
-			else if($stdtype=="upcat_passers") $sql = "INSERT INTO upcat_passers VALUES ('".$stdno."', '".$lname."', 
-						'".$fname."', '".$mi."', '".$gender."', '".$region."','NULL')";
-			mysql_query($sql);
+			if($stdtype=="waitlist_students") $sql = "INSERT INTO waitlist_students VALUES ('".$stdno."', '".$lname."', '".$fname."', '".$mi."', '".substr($stdno,0,4)."', '".$lang."', '".$rdg."', '".$math."','".$sci."', '".$upg."', '".$gender."', '".$region."','NULL')";
+			else if($stdtype=="upcat_passers") $sql = "INSERT INTO upcat_passers VALUES ('".$stdno."', '".$lname."', '".$fname."', '".$mi."', '".substr($stdno,0,4)."', '".$gender."', '".$region."','NULL')";
 			mysql_query($sql);
 		}
 		
@@ -99,10 +95,9 @@ class StudentManager
 		$con = $connect->connectdb();
 		
 		/*update the query*/
-		if(stdtype=="waitlist_students") $result = mysql_query("UPDATE $stdtype SET LastName='$lname', FirstName='$fname', MiddleInitial='$mi', Language='$lang', Reading='$rdg', Mathematics='$math', Science='$sci', UPG='$upg', Gender='$gender', Region='$region' WHERE StudentNumber LIKE '$stdno'");
+		if($stdtype=="waitlist_students") $result = mysql_query("UPDATE $stdtype SET LastName='$lname', FirstName='$fname', MiddleInitial='$mi', Language='$lang', Reading='$rdg', Mathematics='$math', Science='$sci', UPG='$upg', Gender='$gender', Region='$region' WHERE StudentNumber LIKE '$stdno'");
 		else $result = mysql_query("UPDATE $stdtype SET LastName='$lname', FirstName='$fname', MiddleInitial='$mi', Gender='$gender', Region='$region' WHERE StudentNumber LIKE '$stdno'");
 		
-		//$num_of_rows = mysql_num_rows($result);
 		$connect->closeconnection($con);
 		
 		return $result;
@@ -208,6 +203,7 @@ class StudentManager
 			$count1 = array(7,8,9,10,11,12,"CARAGA","ARMM");
 		}
 		
+		echo "<div style='position:absolute; top:200px; left:10px;'>";
 		echo "<table id='count_results'><tr><th id='student'>".$category."</th><th id='student'>Frequency</th></tr>";
 		foreach($count as $value){		
 			
@@ -221,8 +217,10 @@ class StudentManager
 			echo "</tr>";
 		}
 		echo "</table>";
+		echo "</div>";
 		
 		if($category=='Region') {
+			echo "<div style='position:absolute; top:200px; left:200px;'>";
 			echo "<table id='count_results'><tr><th id='student'>".$category."</th><th id='student'>Frequency</th></tr>";
 		
 			foreach($count1 as $value){
@@ -237,6 +235,7 @@ class StudentManager
 			}
 			
 			echo "</table>";
+			echo "</div>";
 		}
 		
 		$connect->closeconnection($con);

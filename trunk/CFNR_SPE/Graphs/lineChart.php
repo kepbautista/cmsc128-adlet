@@ -3,8 +3,8 @@ session_start();
 include '../jpgraph/jpgraph.php';
 include '../jpgraph/jpgraph_line.php';
 
-$student1 = array(0);//initialize list of gwa per semester
-$student2 = array(0);
+$student1 = array();//initialize list of gwa per semester
+$student2 = array();
 
 $stdno1 = $_SESSION['stdno1'];
 $stdno2 = $_SESSION['stdno2'];
@@ -19,14 +19,14 @@ $table1 = $stdno1."/gwa";
 $table2 = $stdno2."/gwa";
 
 /*For Student 1*/
-$result = mysql_query("SELECT GWA FROM `".$table1."`");
+$result = mysql_query("SELECT GWA FROM `".$table1."` ORDER BY SchoolYear,Semester");
 
 /*list GWA for Student 1*/
 while($row = mysql_fetch_array($result))
 	array_push($student1,$row['GWA']);
 
 /*For Student 2*/
-$result = mysql_query("SELECT GWA FROM `".$table2."`");
+$result = mysql_query("SELECT GWA FROM `".$table2."` ORDER BY SchoolYear,Semester");
 
 /*list GWA for Student 2*/
 while($row = mysql_fetch_array($result))

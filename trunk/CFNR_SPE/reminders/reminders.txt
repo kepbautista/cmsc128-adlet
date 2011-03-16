@@ -1,3 +1,7 @@
+-Bawal ang same Course Number sa isang sem
+-Yung Editing about sa subjects, walang primary key.
+-Grade Modification
+ -> recompute GWA
 Non-waitlist
 *"Pag walang subjects, dapat tanggal na yung table" (Aguirre, 2011)
 Running GWA ng upcat passers
@@ -17,25 +21,6 @@ Yung student number na 2008, magkakaroon ng subject na less than sa kanyang year
 Choosing Randomly...
 SELECT * FROM `sometable` WHERE 1 ORDER BY RAND() LIMIT 1
 
--1st term -> 1st semester
-
-dun sa updateGrade ng GradeManager...
- *near Compute Running GWA
-/*
-$gwa = $gm->ComputeGWA($stdno,$con,"running",$year);
-		$result = mysql_query("SELECT TableName FROM students_list where StudentNumber='$stdno'");
-		$row = mysql_fetch_array($result);
-		$table = $row['TableName'];
-		echo $table;
-		mysql_query("UPDATE `".$table."` SET GWA='$gwa' WHERE StudentNumber LIKE '$stdno'");
-*/
- 
-/**
-Graph Labels!!!
-"Wala pang labels." (Aguirre,2011)
-Tapos, check student number if nag-exist.
-Check kung may available nang grades... (may laman ba yung 2008-00196/gwa na table?)
-**/
- 
-GraphManager.php
-index.php ng DisplayGrade
+<div style='float:left'>
+	<img src='../images/logo.png'/>
+</div>

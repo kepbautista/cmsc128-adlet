@@ -14,14 +14,15 @@ include "../StudentManager.php";
 		<title>CFNR Student Performance Evaluator</title>
 		<link rel="stylesheet" type="text/css" href="../styles/view.css" />
 	</head>
-<body id="addStudent">
-<h1>CFNR Student Performance Evaluator</h1>
-	<ul id="tabs">
-		<li id="tab1"><a href="../AddStudent/">Add Student</a></li>
-		<li id="tab2"><a href="../SearchStudent/">Search Student</a></li>
-		<li id="tab3"><a href="../CountStudent/">Count Student</a></li>
-		<li id="tab4"><a href="../Graphs/Graphs.php">View Statistics</a></li>
-	</ul>
+<body id="countStudent">
+	<div id='logo'><img src='../images/logo.png'/></div>
+	
+	<div id='options'>
+	<a href="../AddStudent/"><img src='../images/addstudent.jpg'/></a>
+	<a href="../SearchStudent/"><img src='../images/searchstudent2.jpg'/></a>
+	<a href="../CountStudent/"><img src='../images/countstudent.jpg'></a>
+	<a href="../Graphs/"><img src='../images/viewstat.jpg'></a>
+	</div>
 	
 	<div id="content">
 	<h3>Count Students</h3>

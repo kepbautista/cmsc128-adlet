@@ -56,7 +56,7 @@ class PreAddGradeView{
 			$_SESSION['addgradelevel'] = 2;
 		}
 		
-		header("Location: ../AddGrade/?year1=$year1&year2=$year2");
+		header("Location: ../AddGrade/");
 	}
 }
 

@@ -22,68 +22,89 @@ class AddStudentView
 		}
 		$error = 0;
 				
-		if(($stdno==null) || ($lname==null) || ($fname==null) || ($mi==null) || ($lang==null) || ($rdg==null) || ($math==null) || ($sci==null) || ($upg==null)) {
-			$_SESSION['isnull'] = 1;
+		if($stdno==null) {
+			$_SESSION['stdnoisnull'] = 1;
 			$error = 1;
 		}/*no student number*/
+		
+		if($lname==null){
+			$_SESSION['lnameisnull'] = 1;
+			$error = 1;
+		}/*no last name*/
+		
+		if($fname==null){
+			$_SESSION['fnameisnull'] = 1;
+			$error = 1;
+		}/*no first name*/
+		
+		if($mi==null){
+			$_SESSION['miisnull'] = 1;
+			$error = 1;
+		}/*no last name*/
+		
+		if($lang==null){
+			$_SESSION['langisnull'] = 1;
+			$error = 1;
+		}/*no language grade*/
+		
+		if($rdg==null){
+			$_SESSION['rdgisnull'] = 1;
+			$error = 1;
+		}/*no reading grade*/
+		
+		if($math==null){
+			$_SESSION['mathisnull'] = 1;
+			$error = 1;
+		}/*no math grade*/
+		
+		if($sci==null){
+			$_SESSION['sciisnull'] = 1;
+			$error = 1;
+		}/*no science grade*/
+		
+		if($upg==null){
+			$_SESSION['upgisnull'] = 1;
+			$error = 1;
+		}/*no upg*/
+		
+		if(strlen($mi)>5){
+			$_SESSION['longmi'] = 1;
+			$error = 1;
+		}
 		
 		if($stdno!=null && (!preg_match('/([0-9]{4})\-([0-9]{5})/',$stdno) || strlen($stdno)!=10)) {
 			$_SESSION['wrongstdno'] = 1;
 			$error = 1;
 		}/*wrong student number format*/
 		
-		if($rdg!=null && !is_numeric($rdg)) {
-			$_SESSION['rdgnotnum'] = 1;
+		if($rdg!=null && (!is_numeric($rdg) || $rdg<0)) {
+			$_SESSION['invalidrdg'] = 1;
 			$error = 1;
 		}/*reading grade is not a number*/
 		
-		if($rdg!=null && $rdg<0) {
-			$_SESSION['negativerdg'] = 1;
-			$error = 1;
-		}/*reading grade is negative*/
-		
-		if($lang!=null && !is_numeric($lang)) {
-			$_SESSION['langnotnum'] = 1;
+		if($lang!=null && (!is_numeric($lang) || $lang<0)) {
+			$_SESSION['invalidlang'] = 1;
 			$error = 1;
 		}/*language grade is not a number*/
 		
-		if($lang!=null && $lang<0) {
-			$_SESSION['negativelang'] = 1;
-			$error = 1;
-		}/*language grade is a negative number*/
-		
-		if($math!=null && !is_numeric($math)) {
-			$_SESSION['mathnotnum'] = 1;
+		if($math!=null && (!is_numeric($math) || $math<0)) {
+			$_SESSION['invalidmath'] = 1;
 			$error = 1;
 		}/*mathematics grade is not a number*/
 		
-		if($math!=null && $math<0) {
-			$_SESSION['negativemath'] = 1;
-			$error = 1;
-		}/*mathematics grade is a negative number*/
-		
-		if($sci!=null && !is_numeric($sci)) {
-			$_SESSION['scinotnum'] = 1;
+		if($sci!=null && (!is_numeric($sci) || $sci<0)) {
+			$_SESSION['invalidsci'] = 1;
 			$error = 1;
 		}/*science grade is not a number*/
 		
-		if($sci!=null && $sci<0){
-			$_SESSION['negativesci'] = 1;
-			$error = 1;
-		}/*science grade is a negative number*/
-		
-		if($upg!=null && !is_numeric($upg)){
-			$_SESSION['upgnotnum'] = 1;
+		if($upg!=null && (!is_numeric($upg) || $upg<0)){
+			$_SESSION['invalidupg'] = 1;
 			$error = 1;
 		}/*upg is not a number*/
 		
-		if($upg!=null && $upg<0){
-			$_SESSION['negativeupg'] = 1;
-			$error = 1;
-		}/*upg is a negative number*/
-		
 		if($error==1){
 			$_SESSION['error'] = 1;
+			$_SESSION['addstdtype'] = $stdtype;
 			$_SESSION['addstdno'] = $stdno;
 			$_SESSION['addlname'] = $lname;
 			$_SESSION['addfname'] = $fname;
