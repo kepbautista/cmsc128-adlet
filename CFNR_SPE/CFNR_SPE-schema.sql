@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 15, 2011 at 04:49 PM
+-- Generation Time: Mar 16, 2011 at 06:58 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `2005-46787` (
 INSERT INTO `2005-46787` (`CourseNumber`, `CourseTitle`, `Grade`, `Units`, `Semester`, `SchoolYear`) VALUES
 ('SOSC 1', 'BEHAVIORAL SCIENCES', '1.25', 3, '1st', '2005-2006'),
 ('CMSC 125', 'OPERATING SYSTEMS', '1.75', 3, '2nd', '2010-2011'),
-('CMSC 128', 'SOFTWARE ENGINEERING', '1', 3, '2nd', '2010-2011');
+('CMSC 128', 'INTRODUCTION TO SOFTWARE ENGINEERING', '1', 3, '2nd', '2010-2011');
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,13 @@ CREATE TABLE IF NOT EXISTS `2008-00196` (
 --
 
 INSERT INTO `2008-00196` (`CourseNumber`, `CourseTitle`, `Grade`, `Units`, `Semester`, `SchoolYear`) VALUES
-('MATH 17', 'COLLEGE ALGEBRA AND TRIGONOMETRY', '2', 5, '1st', '2008-2009');
+('MATH 17', 'COLLEGE ALGEBRA AND TRIGONOMETRY', '2', 5, '1st', '2008-2009'),
+('HIST 1 (SSP)', 'PHILIPPINE HISTORY', '1.25', 3, '1st', '2008-2009'),
+('IT 1 (MST)', 'INFORMATION TECHNOLOGY LITERACY', '2', 3, '1st', '2008-2009'),
+('ENG 2 (AH)', 'COLLEGE WRITING', '1.75', 3, '1st', '2008-2009'),
+('ECON 10 (SSP)', 'ECONOMICS IN SOCIAL ISSUES', '2', 3, '1st', '2008-2009'),
+('PE 1', 'FUNDAMENTALS OF PHYSICAL FITNESS', '1.75', 2, '1st', '2008-2009'),
+('LTS 1', 'LITERACY TRAINING SERVICE 1', 'PASS', 3, '1st', '2008-2009');
 
 -- --------------------------------------------------------
 
@@ -137,7 +143,48 @@ CREATE TABLE IF NOT EXISTS `2008-00196/gwa` (
 --
 
 INSERT INTO `2008-00196/gwa` (`Semester`, `SchoolYear`, `GWA`) VALUES
-('1st', '2008-2009', 2);
+('1st', '2008-2009', 1.82353);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `2008-00198`
+--
+
+CREATE TABLE IF NOT EXISTS `2008-00198` (
+  `CourseNumber` varchar(20) NOT NULL,
+  `CourseTitle` varchar(100) NOT NULL,
+  `Grade` varchar(4) NOT NULL,
+  `Units` float NOT NULL,
+  `Semester` varchar(30) NOT NULL,
+  `SchoolYear` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `2008-00198`
+--
+
+INSERT INTO `2008-00198` (`CourseNumber`, `CourseTitle`, `Grade`, `Units`, `Semester`, `SchoolYear`) VALUES
+('MATH 2 (MST)', 'PROBLEM SOLVING', '1.75', 3, '1st', '2008-2009');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `2008-00198/gwa`
+--
+
+CREATE TABLE IF NOT EXISTS `2008-00198/gwa` (
+  `Semester` varchar(10) NOT NULL,
+  `SchoolYear` varchar(10) NOT NULL,
+  `GWA` float DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `2008-00198/gwa`
+--
+
+INSERT INTO `2008-00198/gwa` (`Semester`, `SchoolYear`, `GWA`) VALUES
+('1st', '2008-2009', 1.75);
 
 -- --------------------------------------------------------
 
@@ -161,7 +208,9 @@ CREATE TABLE IF NOT EXISTS `2008-58907` (
 INSERT INTO `2008-58907` (`CourseNumber`, `CourseTitle`, `Grade`, `Units`, `Semester`, `SchoolYear`) VALUES
 ('CMSC 132', 'COMPUTER ARCHITECTURE', '2.25', 3, '2nd', '2010-2011'),
 ('CMSC 131', 'INTRODUCTION TO COMPUTER ORGANIZATION AND MACHINE LEVEL PROGRAMMING', '1', 3, '1st', '2010-2011'),
-('CMSC 150', 'NUMERICAL AND SYMBOLIC COMPUTATIONS', '2.25', 3, '1st', '2010-2011');
+('CMSC 150', 'NUMERICAL AND SYMBOLIC COMPUTATIONS', '2.25', 3, '1st', '2010-2011'),
+('CMSC 2', 'INTRODUCTION TO THE INTERNET', '1.25', 3, '2nd', '2008-2009'),
+('MATH 28', 'ANALYTIC GEOMETRY AND CALCULUS III', '2.25', 3, '1st', '2009-2010');
 
 -- --------------------------------------------------------
 
@@ -181,7 +230,9 @@ CREATE TABLE IF NOT EXISTS `2008-58907/gwa` (
 
 INSERT INTO `2008-58907/gwa` (`Semester`, `SchoolYear`, `GWA`) VALUES
 ('2nd', '2010-2011', 2.25),
-('1st', '2010-2011', 1.625);
+('1st', '2010-2011', 1.625),
+('2nd', '2008-2009', 1.25),
+('1st', '2009-2010', 2.25);
 
 -- --------------------------------------------------------
 
@@ -247,7 +298,8 @@ INSERT INTO `students_list` (`StudentNumber`, `TableName`) VALUES
 ('2005-46787', 'waitlist_students'),
 ('2010-12345', 'waitlist_students'),
 ('2005-12345', 'upcat_passers'),
-('2008-00196', 'waitlist_students');
+('2008-00196', 'upcat_passers'),
+('2008-00198', 'upcat_passers');
 
 -- --------------------------------------------------------
 
@@ -273,7 +325,9 @@ CREATE TABLE IF NOT EXISTS `upcat_passers` (
 
 INSERT INTO `upcat_passers` (`StudentNumber`, `LastName`, `FirstName`, `MiddleInitial`, `Batch`, `Gender`, `Region`, `GWA`) VALUES
 ('2005-12345', 'SAYAO', 'MARIA LORENA', 'C', '2005', 'F', '4-A', 5),
-('2008-58907', 'SERIOSO', 'KAYLA MARIE', 'B', '2008', 'F', '4-A', 1.83333);
+('2008-58907', 'SERIOSO', 'KAYLA MARIE', 'B', '2008', 'F', '4-A', 1.8),
+('2008-00198', 'ILAGAN', 'ROSE ANN', 'A', '2008', 'F', 'NCR', 1.75),
+('2008-00196', 'BAUTISTA', 'KRISTINE ELAINE', 'P', '2008', 'F', 'NCR', 1.82353);
 
 -- --------------------------------------------------------
 
@@ -303,6 +357,5 @@ CREATE TABLE IF NOT EXISTS `waitlist_students` (
 --
 
 INSERT INTO `waitlist_students` (`StudentNumber`, `LastName`, `FirstName`, `MiddleInitial`, `Batch`, `Language`, `Reading`, `Mathematics`, `Science`, `UPG`, `Gender`, `Region`, `GWA`) VALUES
-('2008-00196', 'BAUTISTA', 'KRISTINE ELAINE', 'P', '2008', 74, 74, 74, 74, 2.3, 'F', 'NCR', 2),
 ('2005-46787', 'AGUIRRE', 'DONNA MAE', 'S', '2005', 81, 81, 81, 81, 2.1, 'F', '4-A', 1.33333),
 ('2010-12345', 'ARELAS', 'PRISTINE PEARL', 'H', '2010', 70, 67, 81, 94, 2.567, 'F', '4-A', 1.625);

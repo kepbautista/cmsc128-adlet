@@ -11,10 +11,16 @@
 ?>
 
 <html>
+<head>
+<title><?php echo "Edit information for student number ".$_SESSION['modifyStdno'];?></title>
+<link rel="stylesheet" type="text/css" href="../styles/view.css" />
+</head>
 
 <body>
+<div id='logo'><img src='../images/logo.png'/></div>
 
-<?php echo "<h3>Edit ".$cnum." Grade of ".$stdno."</h3>";?>
+<div id='content' style='top:0'>
+<?php echo "<h2>Edit ".$cnum." Grade of ".$stdno."</h2>";?>
 
 <form method='post' action='EditGradeView.php'>
 <table>
@@ -110,6 +116,7 @@
 	}
 ?>
 </ul>
+</div>
 </body>
 </html>
 

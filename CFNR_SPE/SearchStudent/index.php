@@ -76,14 +76,18 @@
 		</script>
 	</head>
 	
-	<body>
-		<h1>CFNR Student Performance Evaluator</h1>
-		<ul id="tabs">
-		<li id="tab1"><a href="../AddStudent/">Add Student</a></li>
-		<li id="tab2"><a href="../SearchStudent/">Search Student</a></li>
-		<li id="tab3"><a href="../CountStudent/">Count Student</a></li>
-		<li id="tab4"><a href="../Graphs/Graphs.php">View Statistics</a></li>
-		</ul>
+	<body id='searchStudent'>
+		<div id='logo'>
+		<img src='../images/logo.png'/>
+		</div>
+	
+		<div id='options'>
+		<a href="../AddStudent/"><img src='../images/addstudent.jpg'/></a>
+		<a href="../SearchStudent/"><img src='../images/searchstudent.jpg'/></a>
+		<a href="../CountStudent/"><img src='../images/countstudent2.jpg'></a>
+		<a href="../Graphs/"><img src='../images/viewstat.jpg'></a>
+		</div>
+		
 		<div id="content">
 		<h3>Search a Student</h3>
 		
@@ -133,8 +137,9 @@
 				if(isset($_SESSION['negnum']))
 					echo "<li>Grade should not be negative.</li>";	
 				if(isset($_SESSION['searchnull']))
-					echo "<li>No match found.</li>";
+					echo "No match found.";
 				
+				echo "<div style='position:absolute; top:240px; left:5px;'>";
 				echo "<form name='search' id='studentList' method='post' action='edit.php'><br/>";
 				if((isset($_SESSION['searchsuccess']))&&(isset($_SESSION['query']))) {
 					if($_SESSION['searchsuccess']!=0) {
@@ -142,6 +147,7 @@
 						$display->showStudents($_SESSION['category'],$_SESSION['query']);
 					}
 				}
+				echo "</div>";
 				echo "<br/></form>";
 			echo "</ul>";
 		?>
@@ -160,4 +166,6 @@
 	
 	if(isset($_SESSION['category'])) unset($_SESSION['category']);
 	if(isset($_SESSION['query'])) unset($_SESSION['query']);
+	
+	if(isset($_SESSION['modifyStdno'])) unset($_SESSION['modifyStdno']);
 ?>

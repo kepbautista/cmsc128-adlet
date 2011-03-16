@@ -36,25 +36,30 @@ include "DisplayGradeView.php";
 
 </head>
 <body>
-	<div id="displaygradediv">
+	<div id='logo'><img src='../images/logo.png'/></div>
+	
+	<div id="content" style='top:0'>
 	<h2>GRADES OF <?php echo $row['FirstName']." ".$row['LastName']." (".$stdno.")"; ?></h2>
 	
 	<?php
+	echo "<div style='position:absolute; top:50px; left:5px;'>";	
 		if($flag==0)
 			echo "<h3>Grades are not yet available.</h3>"; //the student has no recorded grades
 		else{
 			if($row['GWA']>0)
 				echo "<h3 style='text-align: left;'>Running GWA: ".$row['GWA']."</h3>";
+			
+			if(isset($_GET['editedgrade']))
+				echo "<h3 style='text-align: center;'>Grade is successfully updated!</h3>";
+			
 			$view = new GradeManager();
 			$view->ViewGrades($stdno);
 		}//display the grades
 	?>
-	<?php
-	if(isset($_GET['editedgrade']))
-		echo "<h3 style='text-align: center;'>Grade is successfully updated!</h3>";
-	?>
+	<a href="../SearchStudent/" style="align: center;"><h5 style="text-align: center;">Back to Search</h5></a>
+	
+	<?php echo "</div>";?>
 	</div>
-	<a href="../SearchStudent/"><h5 style="text-align:center;">Back to Search</h5></a>
 	
 </body>
 </html>

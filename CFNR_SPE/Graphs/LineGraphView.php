@@ -28,7 +28,7 @@ class LineGraphView {
 		}/*wrong student number length*/
 		
 		if($error==1)
-			header("Location: graphs.php");
+			header("Location: index.php");
 		else{
 			$lineGraphController = new LineGraphController();
 			$lineGraphController->lineGraph($stdno1,$stdno2);
@@ -45,7 +45,7 @@ class LineGraphView {
 	
 	function showMessage($flag1,$flag2){
 		if(($flag1==1) || ($flag2==1)) {
-			$link = "Location: Graphs.php?";
+			$link = "Location: index.php?";
 			
 			if($flag1==1) $link = $link."stdno1=1&";
 			else if($flag2==1) $link = $link."stdno2=1&";

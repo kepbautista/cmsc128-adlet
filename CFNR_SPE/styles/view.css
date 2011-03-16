@@ -1,19 +1,8 @@
-#tabs{
-	padding:0;
-	margin:0;
-}
-
-#tab1, #tab2, #tab3, #tab4{
-	list-style: none;
-	display: inline;/*makes the list horizontal*/
-	border: solid;
-	border-width: 1px 1px 0 1px;
-	margin: 0 0.5em 0 0;
-	padding: 0 1em;
-}
-
 #content {
-	border: 1px solid;
+position:absolute;
+top:45px;
+left:210px;
+width:1500px;
 }/*div where the tabs sit*/
 
 h1{
@@ -31,7 +20,7 @@ text-align: center
 			
 th{
 text-align: center;
-background-color: #dc403c;
+background-color: #e6e6fa;
 }
 
 #result{
@@ -51,6 +40,22 @@ padding: 5px;
 border: 1px solid;
 }
 
+#options{
+position:absolute;
+top:0px;
+left:193px;
+background-color:#014421;
+width:1500px;
+}
+
+#logo{
+position:absolute;
+top:0px;
+left:0px;
+background-color:#014421;
+height:1000px;
+}
+
 ul {
 	list-style: none;
 	padding:0;
@@ -58,12 +63,6 @@ ul {
 }
 
 li {
-	display: inline;/*makes the list horizontal*/
-	border: solid;
 	border-width: 1px 1px 0 1px;
 	margin: 0 0.5em 0 0;
 }
-
-li a {
-	padding: 0 1em;
-}/*anchor elements inside a list*/
