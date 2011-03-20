@@ -38,11 +38,15 @@ include "DisplayGradeView.php";
 <body>
 	<div id='logo'><img src='../images/logo.png'/></div>
 	
+	<div id='options'>
+	<a href="../logout.php" id="logoutLink"><img src='../images/logout.jpg'></a>
+	</div>
+	
 	<div id="content" style='top:0'>
 	<h2>GRADES OF <?php echo $row['FirstName']." ".$row['LastName']." (".$stdno.")"; ?></h2>
 	
 	<?php
-	echo "<div style='position:absolute; top:50px; left:5px;'>";	
+	echo "<div>";	
 		if($flag==0)
 			echo "<h3>Grades are not yet available.</h3>"; //the student has no recorded grades
 		else{

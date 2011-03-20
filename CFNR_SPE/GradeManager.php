@@ -112,7 +112,7 @@ class GradeManager {
 			if($row['Semester']=="1st" || $row['Semester']=="2nd") echo " Semester, ";
 			else echo ", ";
 			echo $row['SchoolYear']."</h3>";
-			echo "<table id='count_results'><th id='result'>Course Number</th>
+			echo "<table style='margin-left:auto;margin-right:auto;' id='count_results'><th id='result'>Course Number</th>
 			      <th id='result'>Course Title</th><th id='result'>Grade</th>
 				  <th id='result'>Units</th><th id='result' colspan='2'>Modify</th>";
 			

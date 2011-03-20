@@ -19,6 +19,10 @@
 <body>
 <div id='logo'><img src='../images/logo.png'/></div>
 
+<div id='options'>
+<a href="../logout.php" id="logoutLink"><img src='../images/logout.jpg'></a>
+</div>
+
 <div id='content' style='top:0'>
 <?php echo "<h2>Edit ".$cnum." Grade of ".$stdno."</h2>";?>
 

@@ -23,7 +23,7 @@ class AddGradeView {
 			$sql = "SELECT * FROM `".$table."` WHERE CourseNumber like '$check' AND Semester like '$sem' AND SchoolYear LIKE '$sy'";
 			$checker = mysql_query($sql,$con);
 			
-			if(mysql_num_rows($checker)!=0) {
+			if(mysql_num_rows($checker)!=0 && $value!=null) {
 				$_SESSION['duplicateDB'] = 1;
 				$error = 1;
 			}
@@ -35,7 +35,7 @@ class AddGradeView {
 		  (based on the array of inputs)*/
 		$checker = array_count_values($cnum);
 		foreach($checker as $value){
-			if($value>1){
+			if($value>1  && $value!=null){
 				$_SESSION['duplicateInput'] = 1;
 				$error = 1;
 			}

@@ -15,9 +15,12 @@ class SearchStudentController
 	
 	function searchStudent($category,$query)
 	{
-		/*transform the query to uppercase letters
-		& remove white spaces before and after*/
-		$query = trim(strtoupper($query));
+		/*transform each information to uppercase letters,
+		remove white spaces before and after,
+		and look for characters which can harm the program*/
+		$search = array("<",">");
+		$replace = array("bawal1","bawal2");
+		$query = str_replace($search,$replace,trim(strtoupper($query)));
 		
 		$studentmanager = new StudentManager();
 		$searchsuccess = $studentmanager->retrieveStudent($category,$query);

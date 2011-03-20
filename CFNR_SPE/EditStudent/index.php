@@ -51,8 +51,8 @@ include "../dbconnection.php";
 		$region = $row['Region'];
 	}
 	
-	$isnull = "<p>Required field</p>";
-	$invalid = "<p>Should be a non-negative number</p>";
+	$isnull = "<p class='fieldError'>*Required field</p>";
+	$invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 ?>
 
 <html>
@@ -63,6 +63,10 @@ include "../dbconnection.php";
 
 <body>
 	<div id='logo'><img src='../images/logo.png'/></div>
+	
+	<div id='options'>
+	<a href="../logout.php" id="logoutLink"><img src='../images/logout.jpg'></a>
+	</div>
 
 	<div id='content' style='top:0'>
 	<h2>Student Editor</h2>
@@ -97,7 +101,7 @@ include "../dbconnection.php";
 				<td>
 				<?php
 					if(isset($_SESSION['miisnull'])) echo $isnull;
-					if(isset($_SESSION['longmi'])) echo "Up to 5 characters only";
+					if(isset($_SESSION['longmi'])) echo "<p class='fieldError'>*Up to 5 characters only</p>";
 				?>
 				</td>
 			</tr>
@@ -195,10 +199,8 @@ include "../dbconnection.php";
 			else if(isset($_GET['editedgrade']))
 				header("Location: ../SearchStudent/?editedgrade=1");
 			else{
-				echo "<ul>";
 				if(isset($_GET['editnotsuccess']))
-					echo "<li><h3>Student is not successfully updated.</h3></li>";
-				echo "</ul>";
+					echo "<p class='successNotifier'>Student is not successfully updated.</p>";
 			}//there are input errors
 		?>
 	</div>
