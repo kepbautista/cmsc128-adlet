@@ -69,10 +69,7 @@ class searchStudentView
 			$_SESSION['searchnull'] = 1;
 			header("Location: ../SearchStudent/"); //show message if student is not found
 		}else{
-			$_SESSION['searchsuccess'] = 1;
-			$_SESSION['category'] = $category;
-			$_SESSION['query'] = $query;
-			header("Location: ../SearchStudent/"); //successful search student
+			header("Location: ../SearchStudent?searchsuccess=1&category=$category&query=$query"); //successful search student
 		}
 	}
 }

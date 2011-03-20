@@ -22,13 +22,13 @@ class LineGraphView {
 			$error = 1;
 		}/*wrong student number format*/
 		
-		if((strlen($stdno1)!=10)  || (strlen($stdno2)!=10)) {
+		if((strlen($stdno1)!=10 && $stdno1!=null)  || (strlen($stdno2)!=10 && $stdno2!=null)) {
 			$_SESSION['wronglength'] = 1;
 			$error = 1;
 		}/*wrong student number length*/
 		
 		if($error==1)
-			header("Location: index.php");
+			header("Location: ../Graphs");
 		else{
 			$lineGraphController = new LineGraphController();
 			$lineGraphController->lineGraph($stdno1,$stdno2);
@@ -45,7 +45,7 @@ class LineGraphView {
 	
 	function showMessage($flag1,$flag2){
 		if(($flag1==1) || ($flag2==1)) {
-			$link = "Location: index.php?";
+			$link = "Location: ../Graphs?";
 			
 			if($flag1==1) $link = $link."stdno1=1&";
 			else if($flag2==1) $link = $link."stdno2=1&";

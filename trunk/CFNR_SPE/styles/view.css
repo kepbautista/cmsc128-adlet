@@ -1,9 +1,73 @@
+body{
+background-color:PeachPuff;
+}
+
+#loginDiv{
+background-color:#2A7D4F;
+text-align:center;
+width:20%;
+margin:5%;
+margin-left:auto;
+margin-right:auto;
+padding:25px;
+}
+
+#centerArea{
+background-color:white;
+margin-left:auto;
+margin-right:auto;
+width:125%;
+height:100%;
+border:1px solid black;
+}
+
+#logo{
+float:left;
+height:100%;
+background-color:#014421;
+}
+
+#options{
+top:0%;
+background-color:#014421;
+width:100%;
+height:7%;
+}
+
 #content {
-position:absolute;
-top:45px;
-left:210px;
-width:1500px;
-}/*div where the tabs sit*/
+background-color:#2A7D4F;
+margin-top:4%;
+margin-left:21%;
+margin-right:14%;
+width:45%;
+padding: 20px;
+border:1px solid black;
+}
+
+#searchDiv{
+margin-left:20%;
+}
+
+.count_results_div{
+background-color:#014421;
+margin-right:auto;
+margin-left:auto;
+width: 70%
+}
+
+.count_results_table{
+border: solid black;
+border-collapse: collapse;
+margin: auto;
+}
+
+#logoutLink{
+float:right;
+}
+
+label{
+color:white;
+}
 
 h1{
 text-align: center
@@ -14,8 +78,14 @@ text-align: left;
 background-color: #ffd700;
 }
 
-p{
-text-align: center
+p.successNotifier{
+color: red;
+text-align: left;
+}
+
+.fieldError{
+color: red;
+text-align: left;
 }
 			
 th{
@@ -29,31 +99,9 @@ border-collapse: collapse;
 padding: 10px;
 }
 
-#count_results{
-border: solid black;
-border-collapse: collapse;
-margin: auto;
-}
-
 #student{
 padding: 5px;
 border: 1px solid;
-}
-
-#options{
-position:absolute;
-top:0px;
-left:193px;
-background-color:#014421;
-width:1500px;
-}
-
-#logo{
-position:absolute;
-top:0px;
-left:0px;
-background-color:#014421;
-height:1000px;
 }
 
 ul {

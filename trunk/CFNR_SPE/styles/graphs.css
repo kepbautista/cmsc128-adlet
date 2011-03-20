@@ -1,3 +1,7 @@
+body{
+background-color:PeachPuff;
+}
+
 h1{
 text-align: center
 }
@@ -8,26 +12,36 @@ background-color: #ffd700;
 }
 
 #content {
-position:absolute;
-top:45px;
-left:210px;
-width:1500px;
-}/*div where the tabs sit*/
+background-color:#2A7D4F;
+margin-top:4%;
+margin-left:21%;
+margin-right:14%;
+width:65%;
+padding: 20px;
+border:1px solid black;
+/* for IE */
+filter:alpha(opacity=80);
+/* CSS3 standard */
+opacity:0.8;
+}
 
 p{
 text-align: left
 }
 
 #options{
-position:absolute;
-top:0px;
-left:193px;
+top:0%;
 background-color:#014421;
-width:1500px;
+width:100%;
+height:7%;
 }
 
 #logo{
-position:absolute;
-top:0px;
-left:0px;
+float:left;
+height:100%;
+background-color:#014421;
+}
+
+#logoutLink{
+float:right;
 }

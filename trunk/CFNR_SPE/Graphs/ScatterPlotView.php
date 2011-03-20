@@ -9,7 +9,7 @@ class ScatterPlotView {
 	
 	function showMessage($flag){
 		if($flag==1) header("Location: ScatterPlot.php");
-		else if($flag==0) header("Location: index.php?scatternotsuccess=1");
+		else if($flag==0) header("Location: ../Graphs/?scatternotsuccess=1");
 	}
 }
 

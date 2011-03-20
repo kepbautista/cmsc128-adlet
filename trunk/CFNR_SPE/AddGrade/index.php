@@ -31,6 +31,10 @@ include "../dbconnection.php";
 
 <body>
 	<div id='logo'><img src='../images/logo.png'/></div>
+	
+	<div id='options'>
+	<a href="../logout.php" id="logoutLink"><img src='../images/logout.jpg'></a>
+	</div>
 
 	<div id="content" style='top:0'>
 	<!-- Form for determining number of subjects to be entered-->
@@ -59,9 +63,9 @@ include "../dbconnection.php";
 				<td><input type="text" name="SchoolYear" value="<?php if(isset($_SESSION['addgradesy'])) echo $_SESSION['addgradesy'];?>"/></td>
 				<td>
 				<?php
-					if(isset($_SESSION['syisnull'])) echo "<p>Should not be empty.</p>";
-					if(isset($_SESSION['invalidsy'])) echo "<p>Correct form of school year is yyyy-yyyy. ex. 2010-2011</p>";
-					if(isset($_SESSION['wrongsyforbatch'])) echo "<p>School year not applicable for batch of student.</p>";
+					if(isset($_SESSION['syisnull'])) echo "<p class='fieldError'>*Should not be empty.</p>";
+					if(isset($_SESSION['invalidsy'])) echo "<p class='fieldError'>*Correct form of school year is yyyy-yyyy. ex. 2010-2011</p>";
+					if(isset($_SESSION['wrongsyforbatch'])) echo "<p class='fieldError'>*School year not applicable for batch of student.</p>";
 				?>
 				</td>
 			</tr>
@@ -70,8 +74,8 @@ include "../dbconnection.php";
 				<td><input type="text" name="N" value="<?php if(isset($_SESSION['addgradeN'])) echo $_SESSION['addgradeN'];?>"/></td>
 				<td>
 				<?php
-					if(isset($_SESSION['Nisnull'])) echo "<p>Should not be empty.</p>";
-					if(isset($_SESSION['invalidN'])) echo "<p>Should be a nonnegative integer.</p>";
+					if(isset($_SESSION['Nisnull'])) echo "<p class='fieldError'>*Should not be empty.</p>";
+					if(isset($_SESSION['invalidN'])) echo "<p class='fieldError'>*Should be a nonnegative integer.</p>";
 				?>
 				</td>
 			</tr>
@@ -126,29 +130,29 @@ include "../dbconnection.php";
 	<?php
 			/*prompts*/
 			if(isset($_GET['addgradesuccess']))
-				echo "<h3>Grades Successfully Added!</h3>";
+				echo "<p class='successNotifier'>Grades Successfully Added!</p>";
 			else{
 				echo "<ul>";
 				if(isset($_GET['addgradenotsuccess']))
-					echo "<li>Student Grades are not successfully added.</li>";
+					echo "<li class='fieldError'>Student Grades are not successfully added.</li>";
 				if((isset($_SESSION['duplicateInput'])) || (isset($_SESSION['duplicateDB'])))
-					echo "<li>Duplication of subjects in a semester is not allowed.</li>";
+					echo "<li class='fieldError'>Duplication of subjects in a semester is not allowed.</li>";
 				if(isset($_SESSION['nullcnum']))
-					echo "<li>No Course Number should be empty.</li>";
+					echo "<li class='fieldError'>No Course Number should be empty.</li>";
 				if(isset($_SESSION['nullctitle']))
-					echo "<li>No Course Title should be empty.</li>";
+					echo "<li class='fieldError'>No Course Title should be empty.</li>";
 				if(isset($_SESSION['nullgrades']))
-					echo "<li>No Grades should be empty.</li>";
+					echo "<li class='fieldError'>No Grades should be empty.</li>";
 				if(isset($_SESSION['nullunits']))
-					echo "<li>No Units should be empty.</li>";
+					echo "<li class='fieldError'>No Units should be empty.</li>";
 				if(isset($_SESSION['neggrades']))
-					echo "<li>No Grades should be negative.</li>";
+					echo "<li class='fieldError'>No Grades should be negative.</li>";
 				if(isset($_SESSION['negunits']))
-					echo "<li>No Units should be negative.</li>";
+					echo "<li class='fieldError'>No Units should be negative.</li>";
 				if(isset($_GET['wronggrade']))
-					echo "<li>Wrong Grade format (It should be).</li>";
+					echo "<li class='fieldError'>Wrong Grade format (It should be).</li>";
 				if(isset($_SESSION['notnumunits']))
-					echo "<li>Units should be numeric.</li>";
+					echo "<li class='fieldError'>Units should be numeric.</li>";
 				echo "</ul>";
 			}//there are input errors
 		?>

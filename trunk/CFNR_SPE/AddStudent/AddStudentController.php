@@ -29,12 +29,15 @@ class AddStudentController
 		$_SESSION['addgender'] = $gender;
 		$_SESSION['addregion'] = $region;
 			
-		/*transform each information to uppercase letters
-		& remove white spaces before and after*/
+		/*transform each information to uppercase letters,
+		remove white spaces before and after,
+		and look for characters which can harm the program*/
+		$search = array("<",">");
+		$replace = array("bawal1","bawal2");
 		$stdno = trim(strtoupper($stdno));
-		$lname = trim(strtoupper($lname));
-		$fname = trim(strtoupper($fname));
-		$mi = trim(strtoupper($mi));
+		$lname = str_replace($search,$replace,trim(strtoupper($lname)));
+		$fname = str_replace($search,$replace,trim(strtoupper($fname)));
+		$mi = str_replace($search,$replace,trim(strtoupper($mi)));
 		$lang = trim(strtoupper($lang));
 		$rdg = trim(strtoupper($rdg));
 		$math = trim(strtoupper($math));
