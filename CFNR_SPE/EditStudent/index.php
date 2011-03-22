@@ -1,6 +1,6 @@
 <!--
  - File Name: EditStudent/index.php
- - Program Description: form for editing students
+ - Program Description: form for editing student information
  -->
 <?php
 include "../dbconnection.php";
