@@ -1,7 +1,5 @@
 <!--
- - File Name: edit.php
- - Version Information: Version 1.0
- - Date:
+ - File Name: EditStudent/index.php
  - Program Description: form for editing students
  -->
 <?php
@@ -53,6 +51,7 @@ include "../dbconnection.php";
 	
 	$isnull = "<p class='fieldError'>*Required field</p>";
 	$invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
+	$script = "<p class='fieldError'>Illegal input! &ltscript&gt&lt/script&gt</p>";
 ?>
 
 <html>
@@ -83,6 +82,7 @@ include "../dbconnection.php";
 				<td>
 				<?php
 					if(isset($_SESSION['lnameisnull'])) echo $isnull;
+					if(isset($_SESSION['scriptlname'])) echo $script;
 				?>
 				</td>
 			</tr>
@@ -92,6 +92,7 @@ include "../dbconnection.php";
 				<td>
 				<?php
 					if(isset($_SESSION['fnameisnull'])) echo $isnull;
+					if(isset($_SESSION['scriptfname'])) echo $script;
 				?>
 				</td>
 			</tr>
@@ -102,6 +103,7 @@ include "../dbconnection.php";
 				<?php
 					if(isset($_SESSION['miisnull'])) echo $isnull;
 					if(isset($_SESSION['longmi'])) echo "<p class='fieldError'>*Up to 5 characters only</p>";
+					if(isset($_SESSION['scriptmi'])) echo $script;
 				?>
 				</td>
 			</tr>
@@ -222,6 +224,9 @@ include "../dbconnection.php";
 	unset($_SESSION['editgender']);
 	unset($_SESSION['editregion']);
 	
+	if(isset($_SESSION['scriptlname'])) unset($_SESSION['scriptlname']);
+	if(isset($_SESSION['scriptfname'])) unset($_SESSION['scriptfname']);
+	if(isset($_SESSION['scriptmi'])) unset($_SESSION['scriptmi']);
 	if(isset($_SESSION['lnameisnull'])) unset($_SESSION['lnameisnull']);
 	if(isset($_SESSION['fnameisnull'])) unset($_SESSION['fnameisnull']);
 	if(isset($_SESSION['miisnull'])) unset($_SESSION['miisnull']);

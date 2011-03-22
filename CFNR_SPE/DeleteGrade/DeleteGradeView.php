@@ -1,3 +1,7 @@
+<!--
+  - File Name: DeleteGradeView.php
+  - Program Description: validation for grade deletion
+  -->
 <?php
 include "DeleteGradeController.php";
 

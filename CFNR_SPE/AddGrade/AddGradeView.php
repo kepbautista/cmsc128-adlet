@@ -1,7 +1,5 @@
 <!--
   - File Name: AddGradeView.php
-  - Version Information: Version 1.1
-  - Date: March 2, 2011 (4th Release)
   - Program Description: Validate Input Grades
   -->
 <?php
@@ -51,6 +49,30 @@ class AddGradeView {
 		if($n==null){
 			$_SESSION['nulln'] = 1;
 			$error = 1;
+		}
+		
+		/*check if course number is a script that
+		can harm the program*/
+		foreach($cnum as $value) {
+			if((stripos($value,"script") !== false)){
+				if((stripos($value,"<") !== false) && 
+				(stripos($value,">") !== false)){
+					$_SESSION['scriptcnum'] = 1;
+					$error = 1;
+				}
+			}
+		}
+		
+		/*check if course number is a script that
+		can harm the program*/
+		foreach($ctitle as $value) {
+			if((stripos($value,"script") !== false)){
+				if((stripos($value,"<") !== false) && 
+				(stripos($value,">") !== false)){
+					$_SESSION['scriptctitle'] = 1;
+					$error = 1;
+				}
+			}
 		}
 		
 		/*check if the number of courses is numeric*/

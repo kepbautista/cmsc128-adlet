@@ -1,3 +1,7 @@
+<!--
+  - File Name: LineGraphController.php
+  - Program Description: show the message for Line Graph
+  -->
 <?php
 include "GraphManager.php";
 

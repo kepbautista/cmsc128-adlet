@@ -1,6 +1,11 @@
+<!--
+  - File Name: modifygrade.php
+  - Program Description: determines if the user clicked editGrade or deleteGrade
+  -->
 <?php
 	session_start();
 	if((isset($_POST['EditGrade'])) || isset($_POST['DeleteGrade'])) {
+		/*get information*/
 		$stdno = $_POST['StudentNumber'];
 		$cnum = $_POST['CourseNumber'];
 		$sem = $_POST['Semester'];

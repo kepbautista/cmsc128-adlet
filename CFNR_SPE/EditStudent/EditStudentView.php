@@ -1,7 +1,5 @@
 <!--
   - File Name: EditStudentView.php
-  - Version Information: Version 1.0
-  - Date:
   - Program Description: Edit Student Form Validation
   -->
 <?php
@@ -16,6 +14,27 @@ class EditStudentView
 			$lang=1;$rdg=1;$math=1;$sci=1;$upg=1;
 		}
 		$error = 0;
+		
+		/*one or more input is/are scripts that
+		can harm the program*/
+		if((stripos($lname,"script") !== false)){
+			if((stripos($lname,"<") !== false) && (stripos($lname,">") !== false)){
+				$_SESSION['scriptlname'] = 1;
+				$error = 1;
+			}
+		}
+		if((stripos($fname,"script") !== false)){
+			if((stripos($fname,"<") !== false) && (stripos($fname,">") !== false)){
+				$_SESSION['scriptfname'] = 1;
+				$error = 1;
+			}
+		}
+		if((stripos($mi,"script") !== false)){
+			if((stripos($mi,"<") !== false) && (stripos($mi,">") !== false)){
+				$_SESSION['scriptmi'] = 1;
+				$error = 1;
+			}
+		}
 		
 		if($lname==null){
 			$_SESSION['lnameisnull'] = 1;

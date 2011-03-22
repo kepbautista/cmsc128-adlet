@@ -1,3 +1,7 @@
+<!--
+  - File Name: BarGraphController.php
+  - Program Description: show the message for Bar Graph
+  -->
 <?php
 include "GraphManager.php";
 

@@ -1,3 +1,7 @@
+<!--
+  - File Name: lineChart.php
+  - Program Description: draw the Line Graph for One-on-One GWA Comparison (per semester)
+  -->
 <?php
 session_start();
 include '../jpgraph/jpgraph.php';

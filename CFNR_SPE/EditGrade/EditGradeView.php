@@ -1,3 +1,7 @@
+<!--
+ - File Name: EditGradeView.php
+ - Program Description: Validate Edited Grades & Courses
+-->
 <?php
 session_start();
 include "EditGradeController.php";
@@ -8,6 +12,41 @@ class EditGradeView {
 		
 		$connect = new dbconnection();
 		$con = $connect->connectdb();
+		
+		$yeara = substr($year,0,4);
+		$yearb = substr($year,5,4);
+		
+		/*check if course number is a script that
+		can harm the program*/
+		if((stripos($cnum,"script") !== false)){
+			if((stripos($cnum,"<") !== false) && 
+			(stripos($cnum,">") !== false)){
+				$cnum = "*former input is a script";
+				$_SESSION['scriptcnum'] = 1;
+				$error = 1;
+			}
+		}
+		
+		/*check if course title is a script that
+		can harm the program*/
+		if((stripos($ctitle,"script") !== false)){
+			if((stripos($ctitle,"<") !== false) && 
+			(stripos($ctitle,">") !== false)){
+				$ctitle = "*former input is a script";
+				$_SESSION['scriptcnum'] = 1;
+				$error = 1;
+			}
+		}
+		
+		if($year!=null && (!preg_match('/([0-9]{4})\-([0-9]{4})/',$year) || strlen($year)!=9 || $yeara>$yearb)){
+			$_SESSION['invalidsy'] = 1;
+			$error = 1;
+		}
+		
+		if($year!=null && substr($_SESSION['modifyStdno'],0,4)>$yeara){
+			$_SESSION['wrongsyforbatch'] = 1;
+			$error = 1;
+		}
 		
 		/*check for duplicate subjects in one semester
 		  (based on the database)

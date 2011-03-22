@@ -1,3 +1,7 @@
+<!--
+  - File Name: GraphManager.php
+  - Program Description: manipulate queries for graphs
+  -->
 <?php
 include '../jpgraph/jpgraph.php';
 include '../jpgraph/jpgraph_bar.php';

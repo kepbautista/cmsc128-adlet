@@ -1,3 +1,7 @@
+<!--
+  - File Name: scatter.php
+  - Program Description: draw the Scatter Plot for UPG & GWA correlation
+  -->
 <?php
 include ("../jpgraph/jpgraph.php");
 include ("../jpgraph/jpgraph_scatter.php");

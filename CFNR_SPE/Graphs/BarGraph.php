@@ -1,3 +1,7 @@
+<!--
+  - File Name: BarGraph.php
+  - Program Description: show the constructed GWA Comparison per Batch Bar Graph
+  -->
 <html>
 
 <body id='graph'>

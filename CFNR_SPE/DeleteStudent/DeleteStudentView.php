@@ -1,7 +1,5 @@
 <!--
   - File Name: search.php
-  - Version Information: Version 1.0
-  - Date: 
   - Program Description: validation for student deletion
   -->
 <?php

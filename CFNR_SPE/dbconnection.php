@@ -1,7 +1,5 @@
 <!--
   - File Name: dbconnection.php
-  - Version Information: Version 1.0
-  - Date: February 20, 2011
   - Program Description: class that contains database connections
   -->
 <?php

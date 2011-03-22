@@ -124,12 +124,12 @@ class GradeManager {
 			
 			while($data = mysql_fetch_array($view)){
 				echo "<form method='post' action='../modifygrade.php'>";
-				echo "<tr><td id='result'>".$data['CourseNumber']."</td>
-				      <td id='result'>".$data['CourseTitle']."</td>
-					  <td id='result'>".$data['Grade']."</td>
-					  <td id='result'>".$data['Units']."</td>
-					  <td id='result'><input type='submit' name='EditGrade' value='Edit'></td>
-					  <td id='result'><input type='submit' name='DeleteGrade' value='Delete'></td>
+				echo "<tr><td id='result' style='background-color:white'>".$data['CourseNumber']."</td>
+				      <td id='result' style='background-color:white'>".$data['CourseTitle']."</td>
+					  <td id='result' style='background-color:white'>".$data['Grade']."</td>
+					  <td id='result' style='background-color:white'>".$data['Units']."</td>
+					  <td id='result' style='background-color:white'><input type='submit' name='EditGrade' value='Edit'></td>
+					  <td id='result' style='background-color:white'><input type='submit' name='DeleteGrade' value='Delete'></td>
 					  <input type='hidden' name='StudentNumber' value='".$stdno."'/>
 					  <input type='hidden' name='CourseNumber' value='".$data['CourseNumber']."'/>
 					  <input type='hidden' name='CourseTitle' value='".$data['CourseTitle']."'/>
@@ -147,9 +147,12 @@ class GradeManager {
 				if($data['GWA'] == 0) $show = "-";
 				else $show = $data['GWA'];
 					
-				echo "<tr><td id='result'>GWA</td><td id='result'>".$show."
-					 <td id='result'>&nbsp;</td><td id='result'>&nbsp;</td>
-					 <td id='result'>&nbsp;</td><td id='result'>&nbsp;</td></tr>";
+				echo "<tr><td id='result' style='background-color:white'>GWA</td>
+				     <td id='result' style='background-color:white'>".$show."
+					 <td id='result' style='background-color:white'>&nbsp;</td>
+					 <td id='result' style='background-color:white'>&nbsp;</td>
+					 <td id='result' style='background-color:white'>&nbsp;</td>
+					 <td id='result' style='background-color:white'>&nbsp;</td></tr>";
 			}//display GWA for the semester
 			
 		echo "</table>";

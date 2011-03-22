@@ -1,3 +1,7 @@
+<!--
+  - File Name: BarChart.php
+  - Program Description: draw the Bar Graph for Comparison of GWA per Batch
+  -->
 <?php
   include '../jpgraph/jpgraph.php';
   include '../jpgraph/jpgraph_bar.php';

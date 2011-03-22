@@ -1,3 +1,7 @@
+<!--
+  - File Name: DeleteGradeController.php
+  - Program Description: show message for grade deletion
+  -->
 <?php
 include "../GradeManager.php";
 

@@ -1,7 +1,5 @@
 <!--
   - File Name: SearchStudentView.php
-  - Version Information: Version 1.0
-  - Date: 
   - Program Description: Search Student Form Validation
   -->
 <?php
@@ -17,6 +15,14 @@ class searchStudentView
 			$_SESSION['isnull'] = 1;
 			$error = 1;
 		}/*no query entered*/
+		
+		/*input script is script*/
+		if((stripos($category,"script") !== false)){
+			if((stripos($categrory,"<") !== false) && (stripos($category,">") !== false)){
+				$_SESSION['scriptinput'] = 1;
+				$error = 1;
+			}
+		}
 		
 		if($query!=null && $category=="stdno" && (!preg_match('/([0-9]{4})\-([0-9]{5})/',$query)|| strlen($query)!=10)){
 			$_SESSION['wrongstdno'] = 1;

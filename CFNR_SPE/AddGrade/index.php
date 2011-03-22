@@ -1,7 +1,5 @@
 <!--
-  - File Name: addgrade.php
-  - Version Information: Version 1.0
-  - Date: March 2, 2011 (4th Release)
+  - File Name: AddGrade/index.php
   - Program Description: form for adding grades
   -->
 <?php
@@ -153,6 +151,8 @@ include "../dbconnection.php";
 					echo "<li class='fieldError'>Wrong Grade format (It should be).</li>";
 				if(isset($_SESSION['notnumunits']))
 					echo "<li class='fieldError'>Units should be numeric.</li>";
+				if((isset($_SESSION['scriptctitle'])) || (isset($_SESSION['scriptcnum'])))
+					echo "<li class='fieldError'>Illegal input! &ltscript&gt&lt/script&gt</li>";
 				echo "</ul>";
 			}//there are input errors
 		?>
@@ -185,4 +185,6 @@ include "../dbconnection.php";
 	if(isset($_SESSION['neggrades'])) unset($_SESSION['neggrades']);
 	if(isset($_SESSION['negunits'])) unset($_SESSION['negunits']);
 	if(isset($_SESSION['notnumunits'])) unset($_SESSION['notnumunits']);
+	if(isset($_SESSION['scriptctitle'])) unset($_SESSION['scripctitle']);
+	if(isset($_SESSION['scriptcnum'])) unset($_SESSION['scriptcnum']);
 ?>

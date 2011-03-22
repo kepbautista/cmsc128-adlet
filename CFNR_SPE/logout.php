@@ -1,3 +1,7 @@
+<!--
+  - File Name: logout.php
+  - Program Description: log-out user
+  -->
 <?php
 session_start();
 

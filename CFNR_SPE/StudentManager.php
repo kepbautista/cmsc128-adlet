@@ -1,7 +1,5 @@
 <!--
   - File Name: StudentManager.php
-  - Version Information: Version 1.2
-  - Date: March 2, 2011 (4th Release)
   - Program Description: Manipulate Database Queries
   -->
 <?php
@@ -203,9 +201,10 @@ class StudentManager
 			$count1 = array(7,8,9,10,11,12,"CARAGA","ARMM");
 		}
 		
-		echo "<div style='float:left;width:50%;'>";
+		echo "<div style='position:absolute; left:160px; width:50%;'>";
 		echo "<table class='count_results_table'><tr><th id='student'>".$category."</th><th id='student'>Frequency</th></tr>";
-		foreach($count as $value){		
+
+		foreach($count as $value){
 			
 			/*search for all members of the category*/
 			$result = mysql_query("SELECT * FROM waitlist_students WHERE ".$category."='".$value."'");
@@ -220,7 +219,7 @@ class StudentManager
 		echo "</div>";
 		
 		if($category=='Region') {
-			echo "<div sytle='width:50%;'>";
+			echo "<div sytle='position: absolute; width:50%;'>";
 			echo "<table class='count_results_table'><tr><th id='student'>".$category."</th><th id='student'>Frequency</th></tr>";
 		
 			foreach($count1 as $value){
@@ -237,7 +236,7 @@ class StudentManager
 			echo "</table>";
 			echo "</div>";
 		}
-		
+
 		$connect->closeconnection($con);
 	}
 }
