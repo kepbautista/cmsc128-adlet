@@ -1,3 +1,7 @@
+<!--
+  - File Name: index.php
+  - Program Description: home page (contains log-in)
+  -->
 <?php
 session_start();
 if(isset($_SESSION['username'])) header("Location: AddStudent/");

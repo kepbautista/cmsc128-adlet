@@ -1,3 +1,7 @@
+<!--
+  - File Name: DisplayGrade/index.php
+  - Program Description: form that displays grades
+  -->
 <?php
 session_start();
 include "DisplayGradeView.php";

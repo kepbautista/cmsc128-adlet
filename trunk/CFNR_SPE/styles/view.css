@@ -1,7 +1,3 @@
-body{
-background-color:PeachPuff;
-}
-
 #loginDiv{
 background-color:#2A7D4F;
 text-align:center;
@@ -17,37 +13,111 @@ background-color:white;
 margin-left:auto;
 margin-right:auto;
 width:125%;
-height:100%;
-border:1px solid black;
-}
-
-#logo{
-float:left;
-height:100%;
-background-color:#014421;
-}
-
-#options{
-top:0%;
-background-color:#014421;
-width:100%;
-height:7%;
+height:200%;
 }
 
 #content {
 background-color:#2A7D4F;
 margin-top:4%;
 margin-left:21%;
-margin-right:14%;
-width:45%;
+margin-right:auto;
+width:75%;
 padding: 20px;
 border:1px solid black;
+}
+
+h1{
+text-align: center
+}
+
+h2{
+text-align: left;
+background-color: #ffd700;
 }
 
 #searchDiv{
 margin-left:20%;
 }
 
+
+h3{
+color:#014421
+}
+
+p{
+text-align: left
+}
+			
+th{
+text-align: center;
+background-color: #e6e6fa;
+color:#014421
+}
+
+td{
+color:#7b1113;
+}
+
+#result{
+border: 1px solid black;
+border-collapse: collapse;
+padding: 10px;
+}
+
+#count_results{
+border: solid black;
+border-collapse: collapse;
+margin: auto;
+}
+
+#student{
+padding: 5px;
+border: 1px solid;
+}
+
+#options{
+background-color:#014421;
+width:100%;
+height: 50px;
+}
+
+#logo{
+float: left;
+height: 100%;
+top:0px;
+left:0px;
+background-color:#014421;
+}
+
+ul {
+padding:0;
+margin:0;
+color: red;
+}
+
+input.text {
+	border:hidden; background-color:#014421; color:#ffffff
+	}
+input.radio{
+	color:#ffffff;
+	
+	}
+select{
+	align:center;  border:hidden;background-color:#014421; color:#ffffff
+	}	
+td.graph{
+	color:#7b1113
+	}
+input.button{	
+	background-color:#014421;
+	text-align:center; 
+	color:#f3aa2c; 
+	border:0; 			
+	font-weight:800; font:'Arial'
+	}
+input.label{
+	color:#7b1113;
+	}
 .count_results_div{
 background-color:#014421;
 margin-right:auto;
@@ -65,19 +135,6 @@ margin: auto;
 float:right;
 }
 
-label{
-color:white;
-}
-
-h1{
-text-align: center
-}
-
-h2{
-text-align: left;
-background-color: #ffd700;
-}
-
 p.successNotifier{
 color: red;
 text-align: left;
@@ -86,31 +143,4 @@ text-align: left;
 .fieldError{
 color: red;
 text-align: left;
-}
-			
-th{
-text-align: center;
-background-color: #e6e6fa;
-}
-
-#result{
-border: 1px solid black;
-border-collapse: collapse;
-padding: 10px;
-}
-
-#student{
-padding: 5px;
-border: 1px solid;
-}
-
-ul {
-	list-style: none;
-	padding:0;
-	margin:0;
-}
-
-li {
-	border-width: 1px 1px 0 1px;
-	margin: 0 0.5em 0 0;
 }

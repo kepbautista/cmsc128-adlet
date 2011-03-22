@@ -1,3 +1,7 @@
+<!--
+  - File Name: Graphs/index.php
+  - Program Description: form that lets the user to choose which kind of graph to view
+  -->
 <?php
 session_start();
 if(!isset($_SESSION['username'])) header("Location: ../");

@@ -1,7 +1,5 @@
 <!--
   - File Name: DeleteStudentController.php
-  - Version Information: Version 1.0
-  - Date: 
   - Program Description: show message for student deletion
   -->
 <?php

@@ -1,7 +1,5 @@
 <!--
-  - File Name: count.php
-  - Version Information: Version 1.0
-  - Date: February 28, 2011 (3rd Release)
+  - File Name: CountStudent/index.php
   - Program Description: form for counting students per category
   -->
 <?php
@@ -29,7 +27,7 @@ include "../StudentManager.php";
 		<div id="content">
 			<form name="search"  method="post" action="CountStudentView.php">
 			<table>
-				<th style="text-align:left; background-color: #ffffff;">Count Students per:</th>
+				<th style="text-align:left; background-color: PeachPuff;">Count Students per:</th>
 				<tr>
 					<td><input type="radio" name="count_category" id="genderradio" value="gender" checked="true"/><label for="genderradio">Gender</label></td>
 					<td><input type="radio" name="count_category" id="regionradio" value="region"/><label for="regionradio">Region</label></td>

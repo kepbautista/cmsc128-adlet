@@ -1,7 +1,5 @@
 <!--
   - File Name: AddStudentController.php
-  - Version Information: Version 1.1
-  - Date: February 4, 2011 (First Release)
   - Program Description: data transformations
   -->
 <?php
@@ -30,10 +28,7 @@ class AddStudentController
 		$_SESSION['addregion'] = $region;
 			
 		/*transform each information to uppercase letters,
-		remove white spaces before and after,
-		and look for characters which can harm the program*/
-		$search = array("<",">");
-		$replace = array("bawal1","bawal2");
+		remove white spaces before and after,*/
 		$stdno = trim(strtoupper($stdno));
 		$lname = str_replace($search,$replace,trim(strtoupper($lname)));
 		$fname = str_replace($search,$replace,trim(strtoupper($fname)));

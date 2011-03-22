@@ -1,3 +1,7 @@
+<!--
+  - File Name: LineGraphView.php
+  - Program Description: show the message for Line Graph
+  -->
 <?php
 session_start();
 include "LineGraphController.php";

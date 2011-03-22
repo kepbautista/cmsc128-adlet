@@ -1,16 +1,15 @@
+<!--
+  - File Name: AddStudent/index.php
+  - Program Description: form for adding students
+  -->
 <?php
 session_start();
 if(!isset($_SESSION['username'])) header("Location: ../");
 
 $isnull = "<p class='fieldError'>*Required field</p>";
 $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
+$script = "<p class='fieldError'>Illegal input! &ltscript&gt&lt/script&gt</p>";
 ?>
-<!--
-  - File Name: add.php
-  - Version Information: Version 1.1
-  - Date: February 4, 2011 (First Release)
-  - Program Description: form for adding students
-  -->
 <html>
 	<head>
 		<title>CFNR Student Performance Evaluator - Add Student</title>
@@ -86,6 +85,7 @@ $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 						<td>
 						<?php
 							if(isset($_SESSION['lnameisnull']))	echo $isnull;
+							if(isset($_SESSION['scriptlname'])) echo $script;
 						?>
 						</td>
 					</tr>
@@ -95,6 +95,7 @@ $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 						<td>
 						<?php
 							if(isset($_SESSION['fnameisnull']))	echo $isnull;
+							if(isset($_SESSION['scriptfname'])) echo $script;
 						?>
 						</td>
 					</tr>
@@ -105,6 +106,7 @@ $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 						<?php
 							if(isset($_SESSION['miisnull']))	echo $isnull;
 							if(isset($_SESSION['longmi']))	echo "<p class='fieldError'>*Up to 5 characters only</p>";
+							if(isset($_SESSION['scriptmi'])) echo $script;
 						?>
 						</td>
 					</tr>
@@ -123,8 +125,8 @@ $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 						<td><input type="text" name="rdg" id="rdg" <?php if(isset($_SESSION['addrdg'])) echo "value='".$_SESSION['addrdg']."'"?>/></td>
 						<td>
 						<?php
-							if(isset($_SESSION['rdgisnull']))	echo $isnull;
-							if(isset($_SESSION['invalidrdg']))	echo $invalid;
+							if(isset($_SESSION['rdgisnull'])) echo $isnull;
+							if(isset($_SESSION['invalidrdg'])) echo $invalid;
 						?>
 						</td>
 					</tr>
@@ -134,7 +136,7 @@ $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 						<td>
 						<?php
 							if(isset($_SESSION['mathisnull']))	echo $isnull;
-							if(isset($_SESSION['invalidmath']))	echo $invalid;
+							if(isset($_SESSION['invalidmath'])) echo $invalid;
 						?>
 						</td>
 					</tr>
@@ -143,8 +145,8 @@ $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 						<td><input type="text" name="sci" id="sci" <?php if(isset($_SESSION['addsci'])) echo "value='".$_SESSION['addsci']."'"?>/></td>
 						<td>
 						<?php
-							if(isset($_SESSION['sciisnull']))	echo $isnull;
-							if(isset($_SESSION['invalidsci']))	echo $invalid;
+							if(isset($_SESSION['sciisnull'])) echo $isnull;
+							if(isset($_SESSION['invalidsci'])) echo $invalid;
 						?>
 						</td>
 					</tr>
@@ -153,8 +155,8 @@ $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 						<td><input type="text" name="upg" id="upg" <?php if(isset($_SESSION['addupg'])) echo "value='".$_SESSION['addupg']."'"?>/></td>
 						<td>
 						<?php
-							if(isset($_SESSION['upgisnull']))	echo $isnull;
-							if(isset($_SESSION['invalidupg']))	echo $invalid;
+							if(isset($_SESSION['upgisnull'])) echo $isnull;
+							if(isset($_SESSION['invalidupg'])) echo $invalid;
 						?>
 						</td>
 					</tr>
@@ -228,6 +230,9 @@ $invalid = "<p class='fieldError'>*Should be a non-negative number</p>";
 	unset($_SESSION['addgender']);
 	unset($_SESSION['addregion']);
 	
+	if(isset($_SESSION['scriptlname'])) unset($_SESSION['scriptlname']);
+	if(isset($_SESSION['scriptfname'])) unset($_SESSION['scriptfname']);
+	if(isset($_SESSION['scriptmi'])) unset($_SESSION['scriptmi']);
 	if(isset($_SESSION['stdnoisnull'])) unset($_SESSION['stdnoisnull']);
 	if(isset($_SESSION['lnameisnull'])) unset($_SESSION['lnameisnull']);
 	if(isset($_SESSION['fnameisnull'])) unset($_SESSION['fnameisnull']);

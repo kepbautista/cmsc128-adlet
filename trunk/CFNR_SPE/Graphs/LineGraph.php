@@ -1,3 +1,7 @@
+<!--
+  - File Name: LineGraph.php
+  - Program Description: show the constructed Line Graph for One-on-One GWA Comparison (per semester)
+  -->
 <html>
 
 <body id='graph'>

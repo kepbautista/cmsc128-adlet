@@ -1,3 +1,7 @@
+<!--
+  - File Name: ScatterPlot.php
+  - Program Description: show the constructed Scatter Plot for UPG & GWA correlation
+  -->
 <html>
 <head>
 <title>CFNR Student Performance Evaluator</title>

@@ -1,6 +1,5 @@
 <!--
-  - File Name: search.php
-  - Version Information: Version 1.0
+  - File Name: SearchStudent/index.php
   - Program Description: form for searching students
   -->
 <?php
@@ -139,6 +138,8 @@
 						echo "<p class='fieldError'>Grade should not be negative.</p>";	
 					if(isset($_SESSION['searchnull']))
 						echo "<p class='fieldError'>No match found.</p>";
+					if(isset($_SESSION['scriptinput']))
+						echo "<p class='fieldError'>Illegal input &ltscript&gt&lt/script&gt</p>";
 				?>
 				<p><br/></p>
 			</div>

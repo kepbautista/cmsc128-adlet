@@ -1,7 +1,5 @@
 <!--
   - File Name: SearchStudentController.php
-  - Version Information: Version 1.0
-  - Date:
   - Program Description: search data transformations
   -->
 <?php

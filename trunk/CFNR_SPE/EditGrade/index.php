@@ -1,3 +1,7 @@
+<!--
+  - File Name: EditGrade/index.php
+  - Program Description: form for editing grades
+  -->
 <?php
 	session_start();
 	if(!isset($_SESSION['modifyStdno'])) header("Location: ../SearchStudent/");
@@ -117,6 +121,12 @@
 			echo "<li>Units should not be negative.</li>";
 		if(isset($_SESSION['notnum']))
 			echo "<li>Grade or Units should be a number.</li>";
+		if(isset($_SESSION['invalidsy']))
+			echo "<li>Correct form of school year is yyyy-yyyy. ex. 2010-2011.</li>";
+		if(isset($_SESSION['wrongsyforbatch']))
+			echo "<li>School year not applicable for batch of student.</li>";
+		if((isset($_SESSION['scriptctitle'])) || (isset($_SESSION['scriptcnum'])))
+			echo "<li class='fieldError'>Illegal input! &ltscript&gt&lt/script&gt</li>";
 	}
 ?>
 </ul>
@@ -130,4 +140,6 @@
 	if(isset($_SESSION['neggrades'])) unset($_SESSION['neggrades']);
 	if(isset($_SESSION['negunits'])) unset($_SESSION['negunits']);
 	if(isset($_SESSION['notnum'])) unset($_SESSION['notnum']);
+	if(isset($_SESSION['scriptctitle'])) unset($_SESSION['scriptctitle']);
+	if(isset($_SESSION['scriptcnum'])) unset($_SESSION['scriptcnum']);
 ?>

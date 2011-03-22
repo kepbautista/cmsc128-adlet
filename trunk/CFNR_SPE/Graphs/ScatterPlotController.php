@@ -1,3 +1,7 @@
+<!--
+  - File Name: ScatterPlotController.php
+  - Program Description: show the message for Scatter Plot
+  -->
 <?php
 include "GraphManager.php";
 class ScatterPlotController
