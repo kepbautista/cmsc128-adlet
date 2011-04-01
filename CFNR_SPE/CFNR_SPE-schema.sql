@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2011 at 11:26 AM
+-- Generation Time: Apr 01, 2011 at 10:18 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -12,47 +12,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `cfnr_spe`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `2005-12345`
---
-
-CREATE TABLE IF NOT EXISTS `2005-12345` (
-  `CourseNumber` varchar(20) NOT NULL,
-  `CourseTitle` varchar(100) NOT NULL,
-  `Grade` varchar(4) NOT NULL,
-  `Units` float NOT NULL,
-  `Semester` varchar(30) NOT NULL,
-  `SchoolYear` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `2005-12345`
---
-
-INSERT INTO `2005-12345` (`CourseNumber`, `CourseTitle`, `Grade`, `Units`, `Semester`, `SchoolYear`) VALUES
-('MATH 17', 'COLLEGE ALGEBRA AND TRIGONOMETRY', '5', 5, '1st', '2005-2006');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `2005-12345/gwa`
---
-
-CREATE TABLE IF NOT EXISTS `2005-12345/gwa` (
-  `Semester` varchar(10) NOT NULL,
-  `SchoolYear` varchar(10) NOT NULL,
-  `GWA` float DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `2005-12345/gwa`
---
-
-INSERT INTO `2005-12345/gwa` (`Semester`, `SchoolYear`, `GWA`) VALUES
-('1st', '2005-2006', 5);
 
 -- --------------------------------------------------------
 
@@ -290,7 +249,6 @@ INSERT INTO `students_list` (`StudentNumber`, `TableName`) VALUES
 ('2008-58907', 'upcat_passers'),
 ('2005-46787', 'waitlist_students'),
 ('2010-12345', 'waitlist_students'),
-('2005-12345', 'upcat_passers'),
 ('2008-00196', 'upcat_passers');
 
 -- --------------------------------------------------------
@@ -316,7 +274,6 @@ CREATE TABLE IF NOT EXISTS `upcat_passers` (
 --
 
 INSERT INTO `upcat_passers` (`StudentNumber`, `LastName`, `FirstName`, `MiddleInitial`, `Batch`, `Gender`, `Region`, `GWA`) VALUES
-('2005-12345', 'SAYAO', 'MARIA LORENA', 'C', '2005', 'F', '4-A', 5),
 ('2008-58907', 'SERIOSO', 'KAYLA MARIE', 'B', '2008', 'F', '4-A', 1.8),
 ('2008-00196', 'BAUTISTA', 'KRISTINE ELAINE', 'P', '2008', 'F', 'NCR', 2.03261);
 
