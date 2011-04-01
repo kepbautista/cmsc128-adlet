@@ -17,7 +17,7 @@ class LoginView
 	}
 	
 	function validateInfo($username,$password){
-		if(($username!="admin") || ($password!="1234")){
+		if(($username!="cfnr-ocs") || ($password!="resources")){
 			$_SESSION['invalidlogin'] = 1;
 			header("Location: ../CFNR_SPE/");
 		}else{

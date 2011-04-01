@@ -31,6 +31,10 @@ if(isset($_SESSION['username'])) header("Location: AddStudent/");
 				</form>
 			</div>
 		</div>
+		<div id='about'>
+		<a href='about/about.php'>About the Authors</a><br/>
+		All Rights Reserved, 2011.<br/>
+		</div>
 	</body>
 </html>
 <?php
