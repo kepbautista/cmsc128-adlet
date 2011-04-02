@@ -45,9 +45,15 @@ background-color: #ffd700;
 margin-left:20%;
 }
 
-#pic{
+#landscape{
 width: 250px;
 height: 200px;
+}
+
+#portrait{
+width: 180px;
+height: 250px;
+margin: auto
 }
 
 h3{
@@ -164,3 +170,4 @@ text-align: left;
 color: red;
 text-align: left;
 }
+

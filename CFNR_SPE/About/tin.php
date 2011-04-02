@@ -9,24 +9,26 @@
 		<link rel="stylesheet" type="text/css" href="../styles/view.css" />
 	</head>
 	<body>
-		<div id='logo'><img src='images/logo.png' width='200'/></div>
+		<div id='logo'><img src='images/logo.png'/></div>
 		<div id='options'>
 		<h1 id='heading'>CMSC 128 AB-3L Team Adlet</h1>
 		</div>
 	
 		<table><td>	
 		<td><div id='authors'>
-			<div id='tin'><img src='images/tin.jpg' height='200' width='200'/></div><p> </p>
-			<div id='tin2'><img src='images/tin2.jpg' height='300' width='200'/></div>
+			<div><img src='images/tin.jpg' id='portrait'/></div><p> </p>
+			<div><img src='images/tin2.jpg' id='portrait'/></div>
 		</div></td>
 		<td><h1 id='member'>Kristine Elaine P. Bautista</h1>
-		<p>Batch: 2008</p>
-		<p>Birthday: May 15</p>
-		<p>Hometown: Parañaque, Metro Manila</p>
-		<p>High School: Parañaque Science High School</p>
-		<p>Affiliation: Makiling Ultimate Club</p>
-		<p>E-mail Address: kepbautista@gmail.com</p>
-		<p>Interests:<br/>Ultimate Frisbee, Basketball, Football, Travelling, Classical Music</p>
+		<table>
+			<tr><td>Batch:</td><td>2008</td></tr>
+			<tr><td>Birthday:</td><td>May 15</td></tr>
+			<tr><td>Hometown:</td><td>Parañaque, Metro Manila</td></tr>
+			<tr><td>High School:</td><td>Parañaque Science High School</td></tr>
+			<tr><td>Affiliation:</td><td>Makiling Ultimate Club</td></tr>
+			<tr><td>E-mail Address:</td><td>kepbautista@gmail.com</td></tr>
+			<tr><td colspan='2'>Interests:<br/>Ultimate Frisbee, Basketball, Football, Travelling, Piano, Classical Music</td></tr>
+		</table>
 		</td>
 		</table>
 		<div id='about'>

@@ -1,8 +1,7 @@
-<!--
-  - File Name: scatter.php
-  - Program Description: draw the Scatter Plot for UPG & GWA correlation
-  -->
 <?php
+/**File Name: scatter.php
+   Program Description: Draw Scatter Plot
+**/
 include ("../jpgraph/jpgraph.php");
 include ("../jpgraph/jpgraph_scatter.php");
 
@@ -13,7 +12,7 @@ $con = mysql_connect("localhost","root");//create connection to the database
 		if (!$con)
 			die('Could not connect: ' . mysql_error());
 			
-		mysql_select_db("CFNR_SPE", $con);//select database from user
+		mysql_select_db("cfnr_spe", $con);//select database from user
 
 $result = mysql_query("SELECT * FROM waitlist_students ORDER BY RAND() LIMIT 100");
 

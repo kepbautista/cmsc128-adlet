@@ -9,24 +9,27 @@
 		<link rel="stylesheet" type="text/css" href="../styles/view.css" />
 	</head>
 	<body>
-		<div id='logo'><img src='images/logo.png' width='200'/></div>
+		<div id='logo'><img src='images/logo.png'/></div>
 		<div id='options'>
 		<h1 id='heading'>CMSC 128 AB-3L Team Adlet</h1>
 		</div>
 	
 		<table>
 		<td><div id='authors'>
-			<div id='david'><img src='images/david.jpg' height='200' width='200'/></div><p> </p>
-			<div id='david1'><img src='images/david1.jpg' height='200' width='200'/></div>
+			<div><img src='images/david.jpg' id='portrait'/></div><p> </p>
+			<div><img src='images/david1.jpg' id='landscape'/></div>
 		</div></td>
-		<td><h1 id='member'>David Villania III</h1>
-		<p>Batch: 2004</p>
-		<p>Birthday: January 24</p>
-		<p>Hometown: Santa Rosa, Laguna</p>
-		<p>High School: Pacita Complex National High School</p>
-		<p>Affiliation/s: The CPS Triangle</p>
-		<p>E-mail Address: javin13@yahoo.com</p>
-		<p>Interests:<br/>baller during palacasan, nba fanatic, vacation skater, musician wannabe, gamer (on dota and cs only), used to play chess and billiards, noob at photoshop and flash, somewhat a writer, party boy</p>
+		<td><h1 id='member'>David V. Villania III</h1>
+			<table>
+			<tr><td>Batch:</td><td>2004</td></tr>
+			<tr><td>Birthday:</td><td>January 24</td></tr>
+			<tr><td>Hometown:</td><td>Santa Rosa, Laguna</td></tr>
+			<tr><td>High School:</td><td>Pacita Complex National High School</td></tr>
+			<tr><td>Affiliation:</td><td>The CPS Triangle</td></tr>
+			<tr><td>E-mail Address:</td><td>javin13@yahoo.com</td></tr>
+			<tr><td colspan='2'>Interests:<br/>baller during palacasan, nba fanatic, vacation skater, musician wannabe, gamer (on dota and cs only), used to play chess and billiards, noob at photoshop and flash, somewhat a writer, party boy</td></tr>
+			<tr><td colspan='2'>Interests:<br/>baller during palacasan, nba fanatic, vacation skater, musician wannabe, gamer (on dota and cs only), used to play chess and billiards, noob at photoshop and flash, somewhat a writer, party boy</td></tr>
+			</table>
 		</td>
 		</table>
 		<div id='about'>

@@ -1,8 +1,7 @@
-<!--
-  - File Name: lineChart.php
-  - Program Description: draw the Line Graph for One-on-One GWA Comparison (per semester)
-  -->
 <?php
+/**File Name: lineChart.php
+   Program Description: Draw Line Graph
+**/
 session_start();
 include '../jpgraph/jpgraph.php';
 include '../jpgraph/jpgraph_line.php';
@@ -17,7 +16,7 @@ $con = mysql_connect("localhost","root");//create connection to the database
 if (!$con)
 	die('Could not connect: ' . mysql_error());
 		
-mysql_select_db("CFNR_SPE", $con);//select database from user
+mysql_select_db("cfnr_spe", $con);//select database from user
 
 $table1 = $stdno1."/gwa";
 $table2 = $stdno2."/gwa";
