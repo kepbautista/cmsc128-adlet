@@ -12,7 +12,7 @@ $student2 = array();
 $stdno1 = $_SESSION['stdno1'];
 $stdno2 = $_SESSION['stdno2'];
 
-$con = mysql_connect("localhost","root");//create connection to the database
+$con = mysql_connect("localhost","cfnr_spe","adlet");//create connection to the database
 if (!$con)
 	die('Could not connect: ' . mysql_error());
 		
