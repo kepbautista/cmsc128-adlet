@@ -1,8 +1,7 @@
-<!--
-  - File Name: BarChart.php
-  - Program Description: draw the Bar Graph for Comparison of GWA per Batch
-  -->
 <?php
+/**File Name: BarChart.php
+   Program Description: Draw Bar Graph
+**/
   include '../jpgraph/jpgraph.php';
   include '../jpgraph/jpgraph_bar.php';
 
@@ -10,7 +9,7 @@
 	if (!$con)
 		die('Could not connect: ' . mysql_error());
 			
-	mysql_select_db("CFNR_SPE", $con);//select database from user
+	mysql_select_db("cfnr_spe", $con);//select database from user
 	
 	$batch = array();
 	

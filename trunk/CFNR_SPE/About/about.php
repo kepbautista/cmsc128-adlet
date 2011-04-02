@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="../styles/view.css" />
 	</head>
 	<body>
-		<div id='logo'><img src='images/logo.png' width='200'/></div>
+		<div id='logo'><img src='images/logo.png'/></div>
 		<div id='options'>
 		<h1 id='heading'>CMSC 128 AB-3L Team Adlet</h1>
 		</div>
@@ -17,8 +17,8 @@
 		<div id='info' style='top:0'>
 		<table>
 		<td><div id='authors'>
-			<div><img src='images/group.jpg' id='pic'/></div><p> </p>
-			<div><img src='images/group1.jpg' id='pic'/></div>
+			<div><img src='images/group.jpg' id='landscape'/></div><p> </p>
+			<div><img src='images/group1.jpg' id='landscape'/></div>
 		</div></td>
 		<td>
 		<p>We are composed of five UPLB BS Computer Science students.</p>

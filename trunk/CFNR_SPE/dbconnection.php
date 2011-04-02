@@ -10,7 +10,7 @@ class dbconnection {
 		if (!$con)
 			die('Could not connect: ' . mysql_error());
 			
-		mysql_select_db("CFNR_SPE", $con);//select database from user
+		mysql_select_db("cfnr_spe", $con);//select database from user
 		return $con;
 	}//connect to the database
 	

@@ -9,24 +9,31 @@
 		<link rel="stylesheet" type="text/css" href="../styles/view.css" />
 	</head>
 	<body>
-		<div id='logo'><img src='images/logo.png' width='200'/></div>
+		<div id='logo'><img src='images/logo.png'/></div>
 		<div id='options'>
 		<h1 id='heading'>CMSC 128 AB-3L Team Adlet</h1>
 		</div>
 	
 		<div id='info' style='top:0'>
 		<table>
-		<td><div id='authors'>
-			<div id='image'><img src='images/programmers.jpg' id='pic'/></div><p> </p>
-			<div id='image'><img src='images/interface.jpg' id='pic'/></div>
-		</div></td>
-		<td><div id='image'><img src='images/first.jpg' id='pic'/></div><p> </p>
-		<div id='image'><img src='images/ulit.jpg' id='pic'/></div>
-		</td>
-		<td><div id='image'><img src='images/girls.jpg' id='pic'/></div><p> </p>
-		<div id='image'><img src='images/stolen.jpg' id='pic'/></div>
-		</td>
+		</tr>
+		<tr>
+			<td><div><img src='images/programmers.jpg' id='landscape'/></div></td>
+			<td><div><img src='images/first.jpg' id='landscape'/></div></td>
+			<td><div><img src='images/stolen.jpg' id='landscape'/></div></td>
+		</tr>
+		<tr>
+			<td><div><img src='images/ulit.jpg' id='landscape'/></div></td>
+			<td><div><img src='images/client.jpg' id='landscape'/></div></td>
+			<td><div><img src='images/girls.jpg' id='landscape'/></div></td>
+		</tr>
+		<tr>
+			<td><div><img src='images/interface.jpg' id='portrait'/></div></td>
+			<td><div><img src='images/3.jpg' id='portrait'/></div></td>
+			<td><div><img src='images/08.jpg' id='portrait'/></div></td>
+		</tr>
 		</table>
+		
 		<div id='about'>
 		<a href='about.php'>Back to Group Page</a>
 		</div>
