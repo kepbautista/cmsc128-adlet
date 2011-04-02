@@ -8,7 +8,7 @@ include ("../jpgraph/jpgraph_scatter.php");
 $datax = array();
 $datay = array();
 
-$con = mysql_connect("localhost","root");//create connection to the database
+$con = mysql_connect("localhost","cfnr_spe","adlet");//create connection to the database
 		if (!$con)
 			die('Could not connect: ' . mysql_error());
 			
