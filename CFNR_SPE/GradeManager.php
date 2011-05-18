@@ -119,7 +119,7 @@ class GradeManager {
 			$semester = $row['Semester'];
 			$year = $row['SchoolYear'];
 			
-			$sql = "SELECT * FROM `".$stdno."` WHERE Semester='$semester' and SchoolYear='$year'";
+			$sql = "SELECT * FROM `".$stdno."` WHERE Semester='$semester' and SchoolYear='$year' ORDER BY CourseNumber";
 			$view = mysql_query($sql,$con);
 			
 			while($data = mysql_fetch_array($view)){
